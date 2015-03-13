@@ -25,7 +25,7 @@ Hitechnic_Compass::~Hitechnic_Compass()
 
 void Hitechnic_Compass::init()
 {
-	hSens1.i2c.setDataRate(10000);
+	i2c.setDataRate(10000);
 }
 
 Hitechnic_Compass::EError Hitechnic_Compass::startCalibration()
