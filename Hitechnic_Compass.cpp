@@ -16,6 +16,12 @@ using namespace hSensors;
 Hitechnic_Compass::Hitechnic_Compass(hI2C& i2c) : i2c(i2c)
 {
 }
+Hitechnic_Compass::Hitechnic_Compass(hSensor_i2c& sensor) : i2c(sensor.i2c)
+{
+}
+Hitechnic_Compass::~Hitechnic_Compass()
+{
+}
 
 void Hitechnic_Compass::init()
 {
