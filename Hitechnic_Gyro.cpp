@@ -11,11 +11,11 @@ Hitechnic_Gyro::~Hitechnic_Gyro()
 
 void Hitechnic_Gyro::init()
 {
-	sensor.pinIntAdc.ADC_on();
+	sensor.pinIntAdc.enableADC();
 }
 void Hitechnic_Gyro::deinit()
 {
-	sensor.pinIntAdc.ADC_off();
+	sensor.pinIntAdc.disableADC();
 }
 
 uint16_t Hitechnic_Gyro::read()
