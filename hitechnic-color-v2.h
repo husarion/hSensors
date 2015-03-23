@@ -3,7 +3,8 @@
 
 #include "hitechnic.h"
 
-int HTCS2init(tHitechnicSensor& link);
+bool HTCS2init(tHitechnicSensor& link);
+bool HTCS2deinit(tHitechnicSensor& link);
 int HTCS2readColor(tHitechnicSensor& link);
 bool HTCS2readRGB(tHitechnicSensor& link, int &red, int &green, int &blue);
 bool HTCS2readHSV(tHitechnicSensor& link, float &hue, float &saturation, float &value);

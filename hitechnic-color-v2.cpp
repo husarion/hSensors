@@ -37,10 +37,15 @@
 
 static void RGBtoHSV(float red, float green, float blue, float &hue, float &sat, float &value);
 
-int HTCS2init(tHitechnicSensor& link)
+bool HTCS2init(tHitechnicSensor& link)
 {
 	link.sens.selectI2C();
 	link.mode = -1;
+	return true;
+}
+bool HTCS2deinit(tHitechnicSensor& link)
+{
+	return true;
 }
 int HTCS2readColor(tHitechnicSensor& link)
 {
