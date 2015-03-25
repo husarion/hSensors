@@ -27,12 +27,14 @@
 
 #include <hFramework.h>
 
-void SNDinit(ISensor& link);
-void SNDdeinit(ISensor& link);
+#include "lego.h"
 
-int SNDreadRaw(ISensor& link);
-int SNDreadNorm(ISensor& link);
-void SNDsetDBA(ISensor& link);
-void SNDsetDB(ISensor& link);
+void SNDinit(tLegoSensor& link);
+void SNDdeinit(tLegoSensor& link);
+
+int SNDreadRaw(tLegoSensor& link);
+int SNDreadNorm(tLegoSensor& link);
+void SNDsetDBA(tLegoSensor& link);
+void SNDsetDB(tLegoSensor& link);
 
 #endif

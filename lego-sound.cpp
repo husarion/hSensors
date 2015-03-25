@@ -1,33 +1,33 @@
 #include "lego-sound.h"
 
-void SNDinit(ISensor& link)
+void SNDinit(tLegoSensor& link)
 {
-	link.selectGPIO();
-	link.getPinIntAdc().enableADC();
+	link.sens.selectGPIO();
+	link.sens.getPinIntAdc().enableADC();
+	link.sens.getPin1().setOut();
+	SNDsetDB(link);
 }
-void SNDdeinit(ISensor& link)
+void SNDdeinit(tLegoSensor& link)
 {
-	link.getPinIntAdc().disableADC();
-}
-
-int SNDreadRaw(ISensor& link)
-{
-	return 4095 - link.getPinIntAdc().analogReadRaw();
+	link.sens.getPinIntAdc().disableADC();
+	link.sens.getPin1().setIn();
 }
 
-int SNDreadNorm(ISensor& link)
+int SNDreadRaw(tLegoSensor& link)
 {
-	int _val = ((long)SNDreadRaw(link) * (long)100) / (long)4096;
-	return _val;
+	return 4095 - link.sens.getPinIntAdc().analogReadRaw();
 }
-void SNDsetDBA(ISensor& link)
+
+int SNDreadNorm(tLegoSensor& link)
 {
-	link.getPin1().setOut();
-	link.getPin1().write(1);
+	return ((long)SNDreadRaw(link) * (long)100) / (long)4096;
 }
-void SNDsetDB(ISensor& link)
+void SNDsetDBA(tLegoSensor& link)
 {
-	link.getPin1().setOut();
-	link.getPin1().write(0);
+	link.sens.getPin1().write(1);
+}
+void SNDsetDB(tLegoSensor& link)
+{
+	link.sens.getPin1().write(0);
 }
 

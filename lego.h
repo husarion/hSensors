@@ -1,6 +1,6 @@
 /**
  ******************************************************************************
- * \file    lego-ultrasonic.h
+ * \file    lego.h
  * \author  Husarion team
  * \version V0.9
  * \date    2-June-2014
@@ -22,22 +22,25 @@
  ******************************************************************************
  */
 
-#ifndef __LEGO_ULTRASONIC_H__
-#define __LEGO_ULTRASONIC_H__
+#ifndef __LEGO_H__
+#define __LEGO_H__
 
 #include <hFramework.h>
 
-#include "lego.h"
+class tLegoSensor
+{
+public:
+	tLegoSensor(ISensor& sens) : sens(sens) { }
+	ISensor &sens;
+	int mode, state;
+};
 
-void USinit(tLegoSensor& link);
-void USdeinit(tLegoSensor& link);
-int USreadDist(tLegoSensor& link);
-bool USreadDistances(tLegoSensor& link, uint8_t distances[8]);
-bool _USsendCmd(tLegoSensor& link, uint8_t command);
-bool USsetSingleMode(tLegoSensor& link);
-bool USsetContinuousMode(tLegoSensor& link);
-bool USsetOff(tLegoSensor& link);
-bool USsetEventCapture(tLegoSensor& link);
-bool USreset(tLegoSensor& link);
+class tLegoSensor_i2c
+{
+public:
+tLegoSensor_i2c(ISensor_i2c& sens) : sens(sens) { }
+	ISensor_i2c &sens;
+	int mode, state;
+};
 
 #endif
