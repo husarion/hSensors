@@ -20,5 +20,5 @@ void Hitechnic_Gyro::deinit()
 
 uint16_t Hitechnic_Gyro::read()
 {
-	return sensor.pinIntAdc.analogRead_d();
+	return sensor.pinIntAdc.analogReadRaw();
 }
