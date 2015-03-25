@@ -30,9 +30,23 @@
 class tHitechnicSensor
 {
 public:
-	tHitechnicSensor(ISensor_i2c& sens) : sens(sens) { }
 	ISensor_i2c &sens;
+	bool initialized;
 	int mode, state;
+
+	tHitechnicSensor(ISensor_i2c& sens) : sens(sens), initialized(false) { }
+	~tHitechnicSensor()
+	{
+		deinit();
+	}
+	void deinit()
+	{
+		sens.selectGPIO();
+		sens.getPinIntAdc().disableADC();
+		sens.getPin1().setIn();
+		sens.getPin2().setIn();
+		initialized = false;
+	}
 };
 
 #endif

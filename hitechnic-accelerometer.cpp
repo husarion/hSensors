@@ -9,17 +9,14 @@
 #define HTAC_Y_LOW     0x04      /*!< Y axis lower 2 bits */
 #define HTAC_Z_LOW     0x05      /*!< Z axis lower 2 bits */
 
-bool HTACinit(tHitechnicSensor& link)
+static void _init(tHitechnicSensor& link)
 {
 	link.sens.selectI2C();
-	return true;
-}
-bool HTACdeinit(tHitechnicSensor& link)
-{
-	return true;
+	link.initialized = true;
 }
 bool HTACreadAllAxes(tHitechnicSensor& link, int &x, int &y, int &z)
 {
+	if (!link.initialized) _init(link);
 	uint8_t tx[1], rx[6];
 	tx[0] = HTAC_OFFSET + HTAC_X_UP;
 	if (!link.sens.getI2C().read(1, tx, 1, rx, 6))

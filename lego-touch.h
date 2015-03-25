@@ -27,8 +27,8 @@
 
 #include <hFramework.h>
 
-void TSinit(ISensor& link);
-void TSdeinit(ISensor& link);
-bool TSreadState(ISensor& link);
+#include "lego.h"
+
+bool TSreadState(tLegoSensor& link);
 
 #endif

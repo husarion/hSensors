@@ -30,17 +30,45 @@
 class tLegoSensor
 {
 public:
-	tLegoSensor(ISensor& sens) : sens(sens) { }
 	ISensor &sens;
+	bool initialized;
 	int mode, state;
+	
+	tLegoSensor(ISensor& sens) : sens(sens), initialized(false) { }
+	~tLegoSensor()
+	{
+		deinit();
+	}
+	void deinit()
+	{
+		sens.selectGPIO();
+		sens.getPinIntAdc().disableADC();
+		sens.getPin1().setIn();
+		sens.getPin2().setIn();
+		initialized = false;
+	}
 };
 
 class tLegoSensor_i2c
 {
 public:
-tLegoSensor_i2c(ISensor_i2c& sens) : sens(sens) { }
 	ISensor_i2c &sens;
+	bool initialized;
 	int mode, state;
+
+	tLegoSensor_i2c(ISensor_i2c& sens) : sens(sens), initialized(false) { }
+	~tLegoSensor_i2c()
+	{
+		deinit();
+	}
+	void deinit()
+	{
+		sens.selectGPIO();
+		sens.getPinIntAdc().disableADC();
+		sens.getPin1().setIn();
+		sens.getPin2().setIn();
+		initialized = false;
+	}
 };
 
 #endif

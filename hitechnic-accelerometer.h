@@ -9,8 +9,6 @@
 
 #include "hitechnic.h"
 
-bool HTACinit(tHitechnicSensor& link);
-bool HTACdeinit(tHitechnicSensor& link);
 bool HTACreadAllAxes(tHitechnicSensor& link, int &x, int &y, int &z);
 
 #endif

@@ -37,18 +37,16 @@
 
 static void RGBtoHSV(float red, float green, float blue, float &hue, float &sat, float &value);
 
-bool HTCS2init(tHitechnicSensor& link)
+static void _init(tHitechnicSensor& link)
 {
 	link.sens.selectI2C();
 	link.mode = -1;
-	return true;
+	link.initialized = true;
 }
-bool HTCS2deinit(tHitechnicSensor& link)
-{
-	return true;
-}
+
 int HTCS2readColor(tHitechnicSensor& link)
 {
+	if (!link.initialized) _init(link);
 	if (link.mode != HTCS2_MODE_ACTIVE)
 		_HTCSsendCommand(link, HTCS2_MODE_ACTIVE);
 		
@@ -61,6 +59,7 @@ int HTCS2readColor(tHitechnicSensor& link)
 }
 bool HTCS2readRGB(tHitechnicSensor& link, int &red, int &green, int &blue)
 {
+	if (!link.initialized) _init(link);
 	if (link.mode != HTCS2_MODE_ACTIVE)
 		_HTCSsendCommand(link, HTCS2_MODE_ACTIVE);
 
@@ -86,6 +85,7 @@ bool HTCS2readHSV(tHitechnicSensor& link, float &hue, float &saturation, float &
 }
 bool HTCS2readWhite(tHitechnicSensor& link, int &white)
 {
+	if (!link.initialized) _init(link);
 	if (link.mode != HTCS2_MODE_ACTIVE)
 		_HTCSsendCommand(link, HTCS2_MODE_ACTIVE);
 
@@ -100,6 +100,7 @@ bool HTCS2readWhite(tHitechnicSensor& link, int &white)
 }
 bool HTCS2readNormRGB(tHitechnicSensor& link, int &red, int &green, int &blue)
 {
+	if (!link.initialized) _init(link);
 	uint8_t tx[1], rx[3];
 	tx[0] = HTCS2_OFFSET + HTCS2_RED_NORM_REG;
 	if (!link.sens.getI2C().read(1, tx, 1, rx, 3))
@@ -113,7 +114,7 @@ bool HTCS2readNormRGB(tHitechnicSensor& link, int &red, int &green, int &blue)
 }
 bool HTCS2readRawRGB(tHitechnicSensor& link, bool passive, long &red, long &green, long &blue)
 {
-	sys.log("q %d %d\r\n", passive, link.mode);
+	if (!link.initialized) _init(link);
 	if (passive && (link.mode != HTCS2_MODE_PASSIVE))
 		_HTCSsendCommand(link, HTCS2_MODE_PASSIVE);
 	if (!passive && (link.mode != HTCS2_MODE_RAW))
@@ -132,6 +133,7 @@ bool HTCS2readRawRGB(tHitechnicSensor& link, bool passive, long &red, long &gree
 }
 bool HTCS2readRawWhite(tHitechnicSensor& link, bool passive, long &white)
 {
+	if (!link.initialized) _init(link);
 	if (passive && (link.mode != HTCS2_MODE_PASSIVE))
 		_HTCSsendCommand(link, HTCS2_MODE_PASSIVE);
 	if (!passive && (link.mode != HTCS2_MODE_RAW))
@@ -148,6 +150,7 @@ bool HTCS2readRawWhite(tHitechnicSensor& link, bool passive, long &white)
 }
 int HTCS2readColorIndex(tHitechnicSensor& link)
 {
+	if (!link.initialized) _init(link);
 	if (link.mode != HTCS2_MODE_ACTIVE)
 		_HTCSsendCommand(link, HTCS2_MODE_ACTIVE);
 
@@ -167,7 +170,6 @@ bool _HTCSsendCommand(tHitechnicSensor& link, uint8_t command)
 
 	if (command < 30)
 		link.mode = command;
-	sys.log("a %d %d\r\n", link.mode, command);
 
 	return link.sens.getI2C().write(1, tx, 2);
 }

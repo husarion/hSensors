@@ -29,9 +29,6 @@
 
 #include "lego.h"
 
-void SNDinit(tLegoSensor& link);
-void SNDdeinit(tLegoSensor& link);
-
 int SNDreadRaw(tLegoSensor& link);
 int SNDreadNorm(tLegoSensor& link);
 void SNDsetDBA(tLegoSensor& link);

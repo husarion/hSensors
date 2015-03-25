@@ -1,15 +1,14 @@
 #include "lego-touch.h"
 
-void TSinit(ISensor& link)
+static void _init(tLegoSensor& link)
 {
-	link.getPinIntAdc().disableADC();
-}
-void TSdeinit(ISensor& link)
-{
+	link.sens.getPinIntAdc().disableADC();
+	link.initialized = true;
 }
 
-bool TSreadState(ISensor& link)
+bool TSreadState(tLegoSensor& link)
 {
-	return link.getPinIntAdc().read();
+	if (!link.initialized) _init(link);
+	return link.sens.getPinIntAdc().read();
 }
 
