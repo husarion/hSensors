@@ -32,7 +32,8 @@ class tHitechnicSensor
 public:
 	ISensor_i2c &sens;
 	bool initialized;
-	int mode, state;
+	int mode;
+	float param1;
 
 	tHitechnicSensor(ISensor_i2c& sens) : sens(sens), initialized(false) { }
 	~tHitechnicSensor()

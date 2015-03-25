@@ -1,6 +1,6 @@
 /**
  ******************************************************************************
- * \file    hitechnic-color-v2.h
+ * \file    hitechnic-gyro.h
  * \author  Husarion team
  * \version V0.9
  * \date    2-June-2014
@@ -22,21 +22,14 @@
  ******************************************************************************
  */
 
-#ifndef __HITECHNIC_COLOR_V2_H__
-#define __HITECHNIC_COLOR_V2_H__
+#ifndef __HITECHNIC_GYRO_H__
+#define __HITECHNIC_GYRO_H__
 
 #include "hitechnic.h"
 
-bool HTCS2init(tHitechnicSensor& link);
-bool HTCS2deinit(tHitechnicSensor& link);
-int HTCS2readColor(tHitechnicSensor& link);
-bool HTCS2readRGB(tHitechnicSensor& link, int &red, int &green, int &blue);
-bool HTCS2readHSV(tHitechnicSensor& link, float &hue, float &saturation, float &value);
-bool HTCS2readWhite(tHitechnicSensor& link, int &white);
-bool HTCS2readNormRGB(tHitechnicSensor& link, int &red, int &green, int &blue);
-bool HTCS2readRawRGB(tHitechnicSensor& link, bool passive, long &red, long &green, long &blue);
-bool HTCS2readRawWhite(tHitechnicSensor& link, bool passive, long &white);
-int HTCS2readColorIndex(tHitechnicSensor& link);
-bool _HTCSsendCommand(tHitechnicSensor& link, uint8_t command);
+float HTGYROreadRot(tHitechnicSensor& link);
+float HTGYROstartCal(tHitechnicSensor& link);
+void HTGYROsetCal(tHitechnicSensor& link, int offset);
+float HTGYROreadCal(tHitechnicSensor& link);
 
 #endif

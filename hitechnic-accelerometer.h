@@ -1,7 +1,25 @@
-/*
- * Copyright (C) 2015 Krystian Dużyński <krystian.duzynski@gmail.com>
+/**
+ ******************************************************************************
+ * \file    hitechnic-accelerometer.h
+ * \author  Husarion team
+ * \version V0.9
+ * \date    2-June-2014
+ * \brief   Provides interface for Lego Touch sensor.
+ ******************************************************************************
+ * \details This file is part of robocore-sensors library.
  *
- * Distributed under terms of the MIT license.
+ * \copyright Copyright (C) 2014 Husarion Sp. z o.o. <husarion.com> - All Rights Reserved.
+ * Unauthorized copying of this file and the robocore-sensors library,
+ * via any medium is strictly prohibited. Proprietary and confidential.
+ *
+ * \attention
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ ******************************************************************************
  */
 
 #ifndef __HITECHNIC_ACCELEROMETER_H__
