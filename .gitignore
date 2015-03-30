@@ -1,0 +1,13 @@
+*.out
+*.o
+*.bin
+*.elf
+*.map
+*.hex
+*.pyc
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+libs/
+Makefile
+*.a
