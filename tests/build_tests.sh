@@ -10,6 +10,10 @@ if [ ! -z "$HFRAMEWORK_PATH" ]; then
 	ARG2="-DHFRAMEWORK_PATH=$HFRAMEWORK_PATH"
 fi
 
+CURDIR=$(readlink -f $0)
+CURDIR=$(dirname $CURDIR)
+echo $CURDIR
+
 if [ "$ARG1" = "" ]; then
 	echo "No toolchain path"
 	exit 1
@@ -25,14 +29,11 @@ VERSIONS="0_9_5 0_9_6"
 
 EXAMPLES="lego_ultrasonic"
 
-CURDIR=$(pwd)
-echo $CURDIR
-
-cd $HFRAMEWORK_PATH
-./build.sh nodocs
-cd $CURDIR/../
-./build.sh
-cd $CURDIR
+# cd $HFRAMEWORK_PATH
+# ./build.sh nodocs
+# cd $CURDIR/../
+# ./build.sh
+# cd $CURDIR
 
 for type in $TYPES; do
 	for ver in $VERSIONS; do
