@@ -10,18 +10,15 @@
 #define LEGOUS_CMD_ECAPT   0x03      /*!< Command to turn on Event Capture Mode */
 #define LEGOUS_CMD_RST     0x04      /*!< Command to request a warm reset */
 
-void USinit(tLegoSensor_i2c& link)
+static void _init(tLegoSensor_i2c& link)
 {
 	link.sens.currentSourceOn(1);
 	link.sens.selectI2C();
-}
-void USdeinit(tLegoSensor_i2c& link)
-{
-	link.sens.currentSourceOn(0);
-	link.sens.selectGPIO();
+	link.initialized = true;
 }
 int USreadDist(tLegoSensor_i2c& link)
 {
+	if (!link.initialized) _init(link);
 	uint8_t tx[1], rx[1];
 	tx[0] = LEGOUS_REG_DATA;
 	if (!link.sens.getI2C().read(1, tx, 1, rx, 1))
@@ -31,12 +28,14 @@ int USreadDist(tLegoSensor_i2c& link)
 }
 bool USreadDistances(tLegoSensor_i2c& link, uint8_t distances[8])
 {
+	if (!link.initialized) _init(link);
 	uint8_t tx[1];
 	tx[0] = LEGOUS_REG_DATA;
 	return link.sens.getI2C().read(1, tx, 1, distances, 8);
 }
 bool _USsendCmd(tLegoSensor_i2c& link, uint8_t command)
 {
+	if (!link.initialized) _init(link);
 	uint8_t tx[2];
 	tx[0] = LEGOUS_REG_CMD;
 	tx[1] = command;
@@ -44,21 +43,26 @@ bool _USsendCmd(tLegoSensor_i2c& link, uint8_t command)
 }
 bool USsetSingleMode(tLegoSensor_i2c& link)
 {
+	if (!link.initialized) _init(link);
 	return _USsendCmd(link, LEGOUS_CMD_SSHOT);
 }
 bool USsetContinuousMode(tLegoSensor_i2c& link)
 {
+	if (!link.initialized) _init(link);
 	return _USsendCmd(link, LEGOUS_CMD_CONT);
 }
 bool USsetOff(tLegoSensor_i2c& link)
 {
+	if (!link.initialized) _init(link);
 	return _USsendCmd(link, LEGOUS_CMD_OFF);
 }
 bool USsetEventCapture(tLegoSensor_i2c& link)
 {
+	if (!link.initialized) _init(link);
 	return _USsendCmd(link, LEGOUS_CMD_ECAPT);
 }
 bool USreset(tLegoSensor_i2c& link)
 {
+	if (!link.initialized) _init(link);
 	return _USsendCmd(link, LEGOUS_CMD_RST);
 }

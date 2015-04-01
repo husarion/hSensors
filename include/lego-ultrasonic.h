@@ -29,15 +29,13 @@
 
 #include "lego.h"
 
-void USinit(tLegoSensor& link);
-void USdeinit(tLegoSensor& link);
-int USreadDist(tLegoSensor& link);
-bool USreadDistances(tLegoSensor& link, uint8_t distances[8]);
-bool _USsendCmd(tLegoSensor& link, uint8_t command);
-bool USsetSingleMode(tLegoSensor& link);
-bool USsetContinuousMode(tLegoSensor& link);
-bool USsetOff(tLegoSensor& link);
-bool USsetEventCapture(tLegoSensor& link);
-bool USreset(tLegoSensor& link);
+int USreadDist(tLegoSensor_i2c& link);
+bool USreadDistances(tLegoSensor_i2c& link, uint8_t distances[8]);
+bool _USsendCmd(tLegoSensor_i2c& link, uint8_t command);
+bool USsetSingleMode(tLegoSensor_i2c& link);
+bool USsetContinuousMode(tLegoSensor_i2c& link);
+bool USsetOff(tLegoSensor_i2c& link);
+bool USsetEventCapture(tLegoSensor_i2c& link);
+bool USreset(tLegoSensor_i2c& link);
 
 #endif
