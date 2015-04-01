@@ -34,10 +34,6 @@ VERSIONS="0_9_5 0_9_6"
 
 EXAMPLES="lego_ultrasonic"
 
-# cd $HFRAMEWORK_PATH
-# ./build.sh nodocs
-# cd $TESTS_DIR/../
-# ./build.sh
 cd $TESTS_DIR
 
 for type in $TYPES; do
