@@ -4,10 +4,14 @@ if [ ! -z "$TOOLCHAIN_PATH" ]; then
 	ARG="-DTOOLCHAIN_PATH=$TOOLCHAIN_PATH"
 fi
 
+ENABLE_DEBUG=0
+if [ "$1" = "debug" ]; then
+	ENABLE_DEBUG=1
+fi
+
 TYPES="mini big"
 TYPES="big"
 VERSIONS="0_9_5 0_9_6"
-ENABLE_DEBUG=0
 NAME=libsensors
 
 rm -rf libs/

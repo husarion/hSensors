@@ -10,6 +10,11 @@ if [ ! -z "$HFRAMEWORK_PATH" ]; then
 	ARG2="-DHFRAMEWORK_PATH=$HFRAMEWORK_PATH"
 fi
 
+ENABLE_DEBUG=0
+if [ "$1" = "debug" ]; then
+	ENABLE_DEBUG=1
+fi
+
 TESTS_DIR=$(readlink -f $0)
 TESTS_DIR=$(dirname $TESTS_DIR)
 echo $TESTS_DIR
@@ -37,8 +42,15 @@ cd $TESTS_DIR
 
 for type in $TYPES; do
 	for ver in $VERSIONS; do
+
+		if [ "$ENABLE_DEBUG" = "1" ]; then
+			rm -rf build_tmp/
+			cmake -DROBOCORE_VERSION=$ver -DROBOCORE_TYPE=$type $ARG1 $ARG2 -H. -Bbuild_tmp
+			make -C build_tmp/
+		fi
+
 		rm -rf build_tmp/
-		cmake -DROBOCORE_VERSION=$ver -DROBOCORE_TYPE=$type $ARG1 $ARG2 -H. -Bbuild_tmp
+		cmake -DRELEASE=1 -DROBOCORE_VERSION=$ver -DROBOCORE_TYPE=$type $ARG1 $ARG2 -H. -Bbuild_tmp
 		make -C build_tmp/
 	done
 done
