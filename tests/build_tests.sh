@@ -10,6 +10,15 @@ if [ ! -z "$HFRAMEWORK_PATH" ]; then
 	ARG2="-DHFRAMEWORK_PATH=$HFRAMEWORK_PATH"
 fi
 
+if [ "$ARG1" = "" ]; then
+	echo "No toolchain path"
+	exit 1
+fi
+if [ "$ARG2" = "" ]; then
+	echo "No hFramework path"
+	exit 1
+fi
+
 TYPES="mini big"
 TYPES="big"
 VERSIONS="0_9_5 0_9_6"
@@ -20,9 +29,9 @@ CURDIR=$(pwd)
 echo $CURDIR
 
 cd $HFRAMEWORK_PATH
-# ./build.sh nodocs
+./build.sh nodocs
 cd $CURDIR/../
-# ./build.sh
+./build.sh
 cd $CURDIR
 
 for type in $TYPES; do

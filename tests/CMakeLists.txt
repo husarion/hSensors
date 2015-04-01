@@ -11,4 +11,4 @@ include(${HFRAMEWORK_PATH}/hFramework.cmake)
 
 add_component_lib(sensors "${CURRENT_DIR}/../")
 
-add_hexecutable(example_lego_ultrasonic ../examples/example_lego_ultrasonic.cpp)
+add_hexecutable(lego_ultrasonic ../examples/lego_ultrasonic.cpp)
