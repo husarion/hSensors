@@ -10,8 +10,11 @@ endif()
 include(${HFRAMEWORK_PATH}/hFramework.cmake)
 
 add_component_lib(sensors "${CURRENT_DIR}/../")
+# add_component_src("${CURRENT_DIR}/../")
 
 add_hexecutable(lego_ultrasonic ../examples/lego_ultrasonic.cpp)
 add_hexecutable(lego_touch ../examples/lego_touch.cpp)
 add_hexecutable(lego_light ../examples/lego_light.cpp)
 add_hexecutable(hitechnic_accel ../examples/hitechnic_accel.cpp)
+add_hexecutable(hitechnic_gyro ../examples/hitechnic_gyro.cpp)
+add_hexecutable(hitechnic_compass ../examples/hitechnic_compass.cpp)

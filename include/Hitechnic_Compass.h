@@ -42,14 +42,9 @@ public:
 
 	/**
 	 * @brief Create compass object.
-	 * @param i2c - I2C sensor (eg. hSens1.i2c, hSens2.i2c)
-	 */
-	Hitechnic_Compass(hI2C& i2c);
-	/**
-	 * @brief Create compass object.
 	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2)
 	 */
-	Hitechnic_Compass(hSensor_i2c& sensor);
+	Hitechnic_Compass(ISensor_i2c& sensor);
 	~Hitechnic_Compass(); //!< Destory compass object.
 
 	void init(); //!< Initialize compass.
@@ -82,7 +77,8 @@ public:
 	EError readHeading(uint16_t& heading);
 
 private:
-	hI2C &i2c;
+	ISensor_i2c &sens;
+	bool initialized;
 };
 
 }
