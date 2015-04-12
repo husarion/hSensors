@@ -39,14 +39,9 @@ public:
 
 	/**
 	 * @brief Create accelerometer object.
-	 * @param i2c - I2C sensor (eg. hSens1.i2c, hSens2.i2c)
-	 */
-	Hitechnic_Accel(hI2C& i2c);
-	/**
-	 * @brief Create accelerometer object.
 	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2)
 	 */
-	Hitechnic_Accel(hSensor_i2c& sensor);
+	Hitechnic_Accel(ISensor_i2c& sensor);
 	~Hitechnic_Accel(); //!< Destory gyro object.
 
 	void init(); //!< Initialize accelerometer.
@@ -71,7 +66,8 @@ public:
 	EError read(float& x, float& y, float& z);
 
 private:
-	hI2C &i2c;
+	ISensor_i2c &sens;
+	bool initialized;
 };
 
 }

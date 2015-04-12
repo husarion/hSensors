@@ -1,4 +1,4 @@
-#include "Hitechnic_Accel.h"
+#include "Lego_Light.h"
 
 #include <hFramework.h>
 
@@ -8,28 +8,29 @@
 
 using namespace hSensors;
 
-Hitechnic_Accel::Hitechnic_Accel(ISensor_i2c& sensor) : sens(sensor), initialized(false)
+Lego_Light::Lego_Light(ISensor_i2c& sensor) : sens(sensor), initialized(false)
 {
 }
-Hitechnic_Accel::~Hitechnic_Accel()
+Lego_Light::~Lego_Light()
 {
 	deinit();
 }
 
-void Hitechnic_Accel::init()
+void Lego_Light::init()
 {
 	if (initialized)
 		return;
 	sens.getI2C().setDataRate(10000);
+	initialized = true;
 }
-void Hitechnic_Accel::deinit()
+void Lego_Light::deinit()
 {
 	if (!initialized)
 		return;
 	initialized = false;
 }
 
-Hitechnic_Accel::EError Hitechnic_Accel::readRaw(int16_t& x, int16_t& y, int16_t& z)
+Lego_Light::EError Lego_Light::readRaw(int16_t& x, int16_t& y, int16_t& z)
 {
 	init();
 	uint8_t tx[1], rx[6];
@@ -43,12 +44,12 @@ Hitechnic_Accel::EError Hitechnic_Accel::readRaw(int16_t& x, int16_t& y, int16_t
 	
 	return ERROR_OK;
 }
-Hitechnic_Accel::EError Hitechnic_Accel::read(float& x, float& y, float& z)
+Lego_Light::EError Lego_Light::read(float& x, float& y, float& z)
 {
 	init();
 	int16_t tx, ty, tz;
 	
-	Hitechnic_Accel::EError res = readRaw(tx, ty, tz);
+	Lego_Light::EError res = readRaw(tx, ty, tz);
 	if (res != ERROR_OK)
 		return res;
 		

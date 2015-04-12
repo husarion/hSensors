@@ -18,18 +18,27 @@ Hitechnic_Compass::Hitechnic_Compass(ISensor_i2c& sensor) : sens(sensor), initia
 }
 Hitechnic_Compass::~Hitechnic_Compass()
 {
+	deinit();
 }
 
 void Hitechnic_Compass::init()
 {
+	if (initialized)
+		return;
 	sens.selectI2C();
 	sens.getI2C().setDataRate(10000);
 	initialized = true;
 }
+void Hitechnic_Compass::deinit()
+{
+	if (!initialized)
+		return;
+	initialized = false;
+}
 
 Hitechnic_Compass::EError Hitechnic_Compass::startCalibration()
 {
-	if (!initialized) init();
+	init();
 	uint8_t tx[2];
 	tx[0] = REG_MODE_CONTROL;
 	tx[1] = MODE_CALIBRATION;
@@ -38,7 +47,7 @@ Hitechnic_Compass::EError Hitechnic_Compass::startCalibration()
 }
 Hitechnic_Compass::EError Hitechnic_Compass::stopCalibration()
 {
-	if (!initialized) init();
+	init();
 	uint8_t tx[2];
 	tx[0] = REG_MODE_CONTROL;
 	tx[1] = MODE_MEASURING;
@@ -47,7 +56,7 @@ Hitechnic_Compass::EError Hitechnic_Compass::stopCalibration()
 }
 Hitechnic_Compass::EError Hitechnic_Compass::getControlMode(uint8_t& mode)
 {
-	if (!initialized) init();
+	init();
 	uint8_t tx[2];
 	tx[0] = REG_MODE_CONTROL;
 	sens.getI2C().read(SENSOR_ADDRESS, tx, 1, (uint8_t*)&mode, 1);
@@ -56,7 +65,7 @@ Hitechnic_Compass::EError Hitechnic_Compass::getControlMode(uint8_t& mode)
 
 Hitechnic_Compass::EError Hitechnic_Compass::readHeading(uint16_t& heading)
 {
-	if (!initialized) init();
+	init();
 	uint8_t tx[1];
 	tx[0] = REG_HEADING;
 	sens.getI2C().read(SENSOR_ADDRESS, tx, 1, (uint8_t*)&heading, 2);

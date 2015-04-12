@@ -48,6 +48,7 @@ public:
 	~Hitechnic_Compass(); //!< Destory compass object.
 
 	void init(); //!< Initialize compass.
+	void deinit(); //!< Deinitialize compass.
 
 	/**
 	 * @brief Start calibration mode.

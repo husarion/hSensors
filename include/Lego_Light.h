@@ -1,10 +1,10 @@
 /**
  ******************************************************************************
- * \file    Hitechnic_Gyro.h
+ * \file    Lego_Light.h
  * \author  Husarion team
  * \version V0.9
  * \date    2-June-2014
- * \brief   Provides interface for Hitechnic Gyro sensor.
+ * \brief   Provides interface for Hitechnic Accelerometer sensor.
  ******************************************************************************
  * \details This file is part of robocore-sensors library.
  *
@@ -22,36 +22,55 @@
  ******************************************************************************
  */
 
-#ifndef __HITECHNIC_GYRO_H__
-#define __HITECHNIC_GYRO_H__
+#ifndef __LEGO_LIGHT_H__
+#define __LEGO_LIGHT_H__
 
 #include <hFramework.h>
 
 namespace hSensors
 {
 /**
- * @brief Provides interface for Hitechnic Gyro sensor.
+ * @brief Provides interface for Lego Light sensor.
  */
-class Hitechnic_Gyro
+class Lego_Light
 {
 public:
+	enum EError { ERROR_OK, ERROR_PROTO };
+
 	/**
-	 * @brief Create gyro object.
-	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
+	 * @brief Create accelerometer object.
+	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2)
 	 */
-	Hitechnic_Gyro(hSensor& sensor);
-	~Hitechnic_Gyro(); //!< Destory gyro object.
+	Lego_Light(ISensor_i2c& sensor);
+	~Lego_Light(); //!< Destory gyro object.
 
-	void init(); //!< Initialize gyro.
-	void deinit(); //! Deinitialize gyro.
+	void init(); //!< Initialize accelerometer.
+	void deinit(); //! Deinitialize accelerometer.
 
-	uint16_t read();
+	/**
+	 * @brief Read raw acceleration data.
+	 * @param x - x axis 
+	 * @param y - y axis
+	 * @param z - z axis
+	 * @return error code
+	 */
+	EError readRaw(int16_t& x, int16_t& y, int16_t& z);
+
+	/**
+	 * @brief Read acceleration data.
+	 * @param x - x axis in g
+	 * @param y - y axiin gs
+	 * @param z - z axiin gs
+	 * @return error code
+	 */
+	EError read(float& x, float& y, float& z);
 
 private:
-	hSensor &sensor;
+	ISensor_i2c &sens;
 	bool initialized;
 };
 
 }
 
 #endif
+
