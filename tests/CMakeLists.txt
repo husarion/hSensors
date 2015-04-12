@@ -14,7 +14,7 @@ add_component_src("${CURRENT_DIR}/../")
 
 add_hexecutable(hitechnic_accel ../examples/hitechnic_accel.cpp)
 add_hexecutable(lego_light ../examples/lego_light.cpp)
-# add_hexecutable(lego_sound ../examples/lego_sound.cpp)
+add_hexecutable(lego_sound ../examples/lego_sound.cpp)
 
 add_hexecutable(robotc_lego_ultrasonic ../examples/robotc_lego_ultrasonic.cpp)
 add_hexecutable(robotc_lego_touch ../examples/robotc_lego_touch.cpp)

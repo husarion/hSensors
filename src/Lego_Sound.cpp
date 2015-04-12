@@ -4,11 +4,9 @@
 
 #define SENSOR_ADDRESS 0x01
 
-#define REG_MEASUREMENT   0x42
-
 using namespace hSensors;
 
-Lego_Sound::Lego_Sound(ISensor_i2c& sensor) : sens(sensor), initialized(false)
+Lego_Sound::Lego_Sound(ISensor& sensor) : sens(sensor), initialized(false)
 {
 }
 Lego_Sound::~Lego_Sound()

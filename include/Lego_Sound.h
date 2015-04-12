@@ -39,9 +39,9 @@ public:
 	
 	/**
 	 * @brief Create accelerometer object.
-	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2)
+	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
-	Lego_Sound(ISensor_i2c& sensor);
+	Lego_Sound(ISensor& sensor);
 	~Lego_Sound(); //!< Destory gyro object.
 	
 	void init(); //!< Initialize sensor.
@@ -53,7 +53,7 @@ public:
 	void setDB();
 	
 private:
-	ISensor_i2c &sens;
+	ISensor &sens;
 	bool initialized;
 };
 
