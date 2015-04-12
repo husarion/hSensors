@@ -1,6 +1,6 @@
 /**
  ******************************************************************************
- * \file    Lego_Light.h
+ * \file    Lego_Touch.h
  * \author  Husarion team
  * \version V0.9
  * \date    2-June-2014
@@ -22,17 +22,17 @@
  ******************************************************************************
  */
 
-#ifndef __LEGO_LIGHT_H__
-#define __LEGO_LIGHT_H__
+#ifndef __LEGO_TOUCH_H__
+#define __LEGO_TOUCH_H__
 
 #include <hFramework.h>
 
 namespace hSensors
 {
 /**
- * @brief Provides interface for Lego Light sensor.
+ * @brief Provides interface for Lego Touch sensor.
  */
-class Lego_Light
+class Lego_Touch
 {
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
@@ -41,18 +41,16 @@ public:
 	 * @brief Create sensor object.
 	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
-	Lego_Light(ISensor_i2c& sensor);
-	~Lego_Light(); //!< Destory sensor object.
+	Lego_Touch(ISensor& sensor);
+	~Lego_Touch(); //!< Destory sensor object.
 	
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
 	
-	int readRaw();
-	void setActive();
-	void setInactive();
+	bool readState();
 	
 private:
-	ISensor_i2c &sens;
+	ISensor &sens;
 	bool initialized;
 };
 
