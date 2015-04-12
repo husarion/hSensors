@@ -23,7 +23,8 @@ include_directories("${CURRENT_DIR}/include/robotc/")
 set(CMAKE_CXX_FLAGS "${common_flags} -std=c++11")
 set(CMAKE_C_FLAGS "${common_flags} -std=c99")
 
-FILE(GLOB srcs "${CURRENT_DIR}/src/*.cpp")
+FILE(GLOB tmp "${CURRENT_DIR}/src/*.cpp")
+list(APPEND srcs ${tmp})
 FILE(GLOB tmp "${CURRENT_DIR}/src/robotc/*.cpp")
 list(APPEND srcs ${tmp})
 
