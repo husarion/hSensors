@@ -1,7 +1,7 @@
 #include <hFramework.h>
 #include <stdio.h>
 
-#include "Lego_Ultrasonic.h"
+#include "Lego_Touch.h"
 
 using namespace hFramework;
 using namespace hSensors;
@@ -10,13 +10,13 @@ void hMain(void)
 {
 	sys.setLogDev(&Serial);
 	
-	Lego_Ultrasonic sensor(hSens1);
+	Lego_Touch sensor(hSens1);
 	
 	for (;;)
 	{
-		int dist = sensor.readDist();
+		bool state = sensor.readState();
 		LED1.toggle();
-		printf("dist %d\r\n", dist);
+		printf("state %d\r\n", state);
 		sys.delay_ms(10);
 	}
 }

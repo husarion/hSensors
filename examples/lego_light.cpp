@@ -1,7 +1,7 @@
 #include <hFramework.h>
 #include <stdio.h>
 
-#include "Lego_Ultrasonic.h"
+#include "Lego_Light.h"
 
 using namespace hFramework;
 using namespace hSensors;
@@ -10,13 +10,14 @@ void hMain(void)
 {
 	sys.setLogDev(&Serial);
 	
-	Lego_Ultrasonic sensor(hSens1);
+	Lego_Light sensor(hSens1);
 	
 	for (;;)
 	{
-		int dist = sensor.readDist();
+		int16_t val;
+		val = sensor.readRaw();
 		LED1.toggle();
-		printf("dist %d\r\n", dist);
+		printf("val %5d\r\n", val);
 		sys.delay_ms(10);
 	}
 }

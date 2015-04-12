@@ -1,10 +1,10 @@
 /**
  ******************************************************************************
- * \file    Hitechnic_Gyro.h
+ * \file    Hitechnic_ColorV2.h
  * \author  Husarion team
  * \version V0.9
  * \date    2-June-2014
- * \brief   Provides interface for Hitechnic Gyro sensor.
+ * \brief   Provides interface for Hitechnic Accelerometer sensor.
  ******************************************************************************
  * \details This file is part of robocore-sensors library.
  *
@@ -22,34 +22,47 @@
  ******************************************************************************
  */
 
-#ifndef __HITECHNIC_GYRO_H__
-#define __HITECHNIC_GYRO_H__
+#ifndef __HITECHNIC_COLORV2_H__
+#define __HITECHNIC_COLORV2_H__
 
 #include <hFramework.h>
 
 namespace hSensors
 {
 /**
- * @brief Provides interface for Hitechnic Gyro sensor.
+ * @brief Provides interface for Hitechnic Accelerometer sensor.
  */
-class Hitechnic_Gyro
+class Hitechnic_ColorV2
 {
 public:
+	enum EError { ERROR_OK, ERROR_PROTO };
+	
 	/**
 	 * @brief Create sensor object.
-	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
+	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
+	 * implementation (eg. hSens3.getSoftwareI2C(), hSens4.getSoftwareI2C())
 	 */
-	Hitechnic_Gyro(hSensor& sensor);
-	~Hitechnic_Gyro(); //!< Destory sensor object.
-
+	Hitechnic_ColorV2(ISensor_i2c& sensor);
+	~Hitechnic_ColorV2(); //!< Destory sensor object.
+	
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
-
-	uint16_t read();
-
+	
+	int readColor();
+	bool readRGB(uint8_t &red, uint8_t &green, uint8_t &blue);
+	bool readHSV(float &hue, float &saturation, float &value);
+	bool readWhite(int &white);
+	bool readNormRGB(int &red, int &green, int &blue);
+	bool readRawRGB(bool passive, long &red, long &green, long &blue);
+	bool readRawWhite(bool passive, long &white);
+	int readColorIndex();
+	
 private:
-	hSensor &sensor;
+	ISensor_i2c &sens;
 	bool initialized;
+	int mode;
+	
+	bool sendCommand(uint8_t command);
 };
 
 }

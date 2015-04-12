@@ -8,26 +8,34 @@
 
 using namespace hSensors;
 
-Hitechnic_Accel::Hitechnic_Accel(hI2C& i2c) : i2c(i2c)
-{
-}
-Hitechnic_Accel::Hitechnic_Accel(hSensor_i2c& sensor) : i2c(sensor.i2c)
+Hitechnic_Accel::Hitechnic_Accel(ISensor_i2c& sensor) : sens(sensor), initialized(false)
 {
 }
 Hitechnic_Accel::~Hitechnic_Accel()
 {
+	deinit();
 }
 
 void Hitechnic_Accel::init()
 {
-	i2c.setDataRate(10000);
+	if (initialized)
+		return;
+	sens.selectI2C();
+	sens.getI2C().setDataRate(10000);
+}
+void Hitechnic_Accel::deinit()
+{
+	if (!initialized)
+		return;
+	initialized = false;
 }
 
 Hitechnic_Accel::EError Hitechnic_Accel::readRaw(int16_t& x, int16_t& y, int16_t& z)
 {
+	init();
 	uint8_t tx[1], rx[6];
 	tx[0] = REG_MEASUREMENT;
-	if (!i2c.read(SENSOR_ADDRESS, tx, 1, rx, 6))
+	if (!sens.getI2C().read(SENSOR_ADDRESS, tx, 1, rx, 6))
 		return ERROR_PROTO;
 		
 	x = ((int16_t)(rx[0] << 8) >> 6) | (rx[3] & 0x03);
@@ -38,6 +46,7 @@ Hitechnic_Accel::EError Hitechnic_Accel::readRaw(int16_t& x, int16_t& y, int16_t
 }
 Hitechnic_Accel::EError Hitechnic_Accel::read(float& x, float& y, float& z)
 {
+	init();
 	int16_t tx, ty, tz;
 	
 	Hitechnic_Accel::EError res = readRaw(tx, ty, tz);

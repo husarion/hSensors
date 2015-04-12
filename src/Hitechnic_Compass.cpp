@@ -13,50 +13,62 @@
 
 using namespace hSensors;
 
-Hitechnic_Compass::Hitechnic_Compass(hI2C& i2c) : i2c(i2c)
-{
-}
-Hitechnic_Compass::Hitechnic_Compass(hSensor_i2c& sensor) : i2c(sensor.i2c)
+Hitechnic_Compass::Hitechnic_Compass(ISensor_i2c& sensor) : sens(sensor), initialized(false)
 {
 }
 Hitechnic_Compass::~Hitechnic_Compass()
 {
+	deinit();
 }
 
 void Hitechnic_Compass::init()
 {
-	i2c.setDataRate(10000);
+	if (initialized)
+		return;
+	sens.selectI2C();
+	sens.getI2C().setDataRate(10000);
+	initialized = true;
+}
+void Hitechnic_Compass::deinit()
+{
+	if (!initialized)
+		return;
+	initialized = false;
 }
 
 Hitechnic_Compass::EError Hitechnic_Compass::startCalibration()
 {
+	init();
 	uint8_t tx[2];
 	tx[0] = REG_MODE_CONTROL;
 	tx[1] = MODE_CALIBRATION;
-	i2c.write(SENSOR_ADDRESS, tx, 2);
+	sens.getI2C().write(SENSOR_ADDRESS, tx, 2);
 	return ERROR_OK;
 }
 Hitechnic_Compass::EError Hitechnic_Compass::stopCalibration()
 {
+	init();
 	uint8_t tx[2];
 	tx[0] = REG_MODE_CONTROL;
 	tx[1] = MODE_MEASURING;
-	i2c.write(SENSOR_ADDRESS, tx, 2);
+	sens.getI2C().write(SENSOR_ADDRESS, tx, 2);
 	return ERROR_OK;
 }
 Hitechnic_Compass::EError Hitechnic_Compass::getControlMode(uint8_t& mode)
 {
+	init();
 	uint8_t tx[2];
 	tx[0] = REG_MODE_CONTROL;
-	i2c.read(SENSOR_ADDRESS, tx, 1, (uint8_t*)&mode, 1);
+	sens.getI2C().read(SENSOR_ADDRESS, tx, 1, (uint8_t*)&mode, 1);
 	return ERROR_OK;
 }
 
 Hitechnic_Compass::EError Hitechnic_Compass::readHeading(uint16_t& heading)
 {
+	init();
 	uint8_t tx[1];
 	tx[0] = REG_HEADING;
-	i2c.read(SENSOR_ADDRESS, tx, 1, (uint8_t*)&heading, 2);
-
+	sens.getI2C().read(SENSOR_ADDRESS, tx, 1, (uint8_t*)&heading, 2);
+	
 	return ERROR_OK;
 }

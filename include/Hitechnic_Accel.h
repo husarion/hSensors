@@ -1,6 +1,6 @@
 /**
  ******************************************************************************
- * \file    Hitechnic_Gyro.h
+ * \file    Hitechnic_Accel.h
  * \author  Husarion team
  * \version V0.9
  * \date    2-June-2014
@@ -38,19 +38,15 @@ public:
 	enum EError { ERROR_OK, ERROR_PROTO };
 
 	/**
-	 * @brief Create accelerometer object.
-	 * @param i2c - I2C sensor (eg. hSens1.i2c, hSens2.i2c)
+	 * @brief Create sensor object.
+	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
+	 * implementation (eg. hSens3.getSoftwareI2C(), hSens4.getSoftwareI2C())
 	 */
-	Hitechnic_Accel(hI2C& i2c);
-	/**
-	 * @brief Create accelerometer object.
-	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2)
-	 */
-	Hitechnic_Accel(hSensor_i2c& sensor);
-	~Hitechnic_Accel(); //!< Destory gyro object.
+	Hitechnic_Accel(ISensor_i2c& sensor);
+	~Hitechnic_Accel(); //!< Destory sensor object.
 
-	void init(); //!< Initialize accelerometer.
-	void deinit(); //! Deinitialize accelerometer.
+	void init(); //!< Initialize sensor.
+	void deinit(); //!< Deinitialize sensor.
 
 	/**
 	 * @brief Read raw acceleration data.
@@ -71,7 +67,8 @@ public:
 	EError read(float& x, float& y, float& z);
 
 private:
-	hI2C &i2c;
+	ISensor_i2c &sens;
+	bool initialized;
 };
 
 }

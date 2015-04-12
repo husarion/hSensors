@@ -1,22 +1,21 @@
 #include <hFramework.h>
 #include <stdio.h>
 
-#include "Lego_Ultrasonic.h"
+#include "hitechnic-gyro.h"
 
 using namespace hFramework;
-using namespace hSensors;
 
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
 	
-	Lego_Ultrasonic sensor(hSens1);
+	tHitechnicSensor sensor1(hSens1);
 	
 	for (;;)
 	{
-		int dist = sensor.readDist();
+		float r = HTGYROreadRot(sensor1);
 		LED1.toggle();
-		printf("dist %d\r\n", dist);
+		printf("%f\r\n", r);
 		sys.delay_ms(10);
 	}
 }

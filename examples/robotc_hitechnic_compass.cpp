@@ -1,7 +1,7 @@
 #include <hFramework.h>
 #include <stdio.h>
 
-#include "Lego_Ultrasonic.h"
+#include "Hitechnic_Compass.h"
 
 using namespace hFramework;
 using namespace hSensors;
@@ -10,13 +10,14 @@ void hMain(void)
 {
 	sys.setLogDev(&Serial);
 	
-	Lego_Ultrasonic sensor(hSens1);
+	Hitechnic_Compass compass(hSens5.getSoftwareI2C());
 	
 	for (;;)
 	{
-		int dist = sensor.readDist();
+		uint16_t head;
+		compass.readHeading(head);
 		LED1.toggle();
-		printf("dist %d\r\n", dist);
+		printf("%d\r\n", head);
 		sys.delay_ms(10);
 	}
 }

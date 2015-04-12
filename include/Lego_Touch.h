@@ -1,10 +1,10 @@
 /**
  ******************************************************************************
- * \file    Hitechnic_Gyro.h
+ * \file    Lego_Touch.h
  * \author  Husarion team
  * \version V0.9
  * \date    2-June-2014
- * \brief   Provides interface for Hitechnic Gyro sensor.
+ * \brief   Provides interface for Hitechnic Accelerometer sensor.
  ******************************************************************************
  * \details This file is part of robocore-sensors library.
  *
@@ -22,36 +22,39 @@
  ******************************************************************************
  */
 
-#ifndef __HITECHNIC_GYRO_H__
-#define __HITECHNIC_GYRO_H__
+#ifndef __LEGO_TOUCH_H__
+#define __LEGO_TOUCH_H__
 
 #include <hFramework.h>
 
 namespace hSensors
 {
 /**
- * @brief Provides interface for Hitechnic Gyro sensor.
+ * @brief Provides interface for Lego Touch sensor.
  */
-class Hitechnic_Gyro
+class Lego_Touch
 {
 public:
+	enum EError { ERROR_OK, ERROR_PROTO };
+	
 	/**
 	 * @brief Create sensor object.
 	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
-	Hitechnic_Gyro(hSensor& sensor);
-	~Hitechnic_Gyro(); //!< Destory sensor object.
-
+	Lego_Touch(ISensor& sensor);
+	~Lego_Touch(); //!< Destory sensor object.
+	
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
-
-	uint16_t read();
-
+	
+	bool readState();
+	
 private:
-	hSensor &sensor;
+	ISensor &sens;
 	bool initialized;
 };
 
 }
 
 #endif
+

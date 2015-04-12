@@ -1,20 +1,19 @@
 #include <hFramework.h>
 #include <stdio.h>
 
-#include "Lego_Ultrasonic.h"
+#include "lego-ultrasonic.h"
 
 using namespace hFramework;
-using namespace hSensors;
 
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
-	
-	Lego_Ultrasonic sensor(hSens1);
+
+	tLegoSensor_i2c sensor(hSens1);
 	
 	for (;;)
 	{
-		int dist = sensor.readDist();
+		int dist = USreadDist(sensor);
 		LED1.toggle();
 		printf("dist %d\r\n", dist);
 		sys.delay_ms(10);

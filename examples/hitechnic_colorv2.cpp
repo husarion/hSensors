@@ -1,7 +1,7 @@
 #include <hFramework.h>
 #include <stdio.h>
 
-#include "Lego_Ultrasonic.h"
+#include "Hitechnic_ColorV2.h"
 
 using namespace hFramework;
 using namespace hSensors;
@@ -10,13 +10,14 @@ void hMain(void)
 {
 	sys.setLogDev(&Serial);
 	
-	Lego_Ultrasonic sensor(hSens1);
+	Hitechnic_ColorV2 sensor(hSens1);
 	
 	for (;;)
 	{
-		int dist = sensor.readDist();
+		uint8_t r, g, b;
+		sensor.readRGB(r, g, b);
 		LED1.toggle();
-		printf("dist %d\r\n", dist);
+		printf("r %4d g %4d b %4d\r\n", r, g, b);
 		sys.delay_ms(10);
 	}
 }
