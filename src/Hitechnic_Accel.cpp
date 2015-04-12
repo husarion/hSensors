@@ -20,6 +20,7 @@ void Hitechnic_Accel::init()
 {
 	if (initialized)
 		return;
+	sens.selectI2C();
 	sens.getI2C().setDataRate(10000);
 }
 void Hitechnic_Accel::deinit()

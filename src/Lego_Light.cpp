@@ -20,6 +20,7 @@ void Lego_Light::init()
 {
 	if (initialized)
 		return;
+	sens.selectGPIO();
 	sens.getPinIntAdc().enableADC();
 	sens.getPin1().setOut();
 	initialized = true;

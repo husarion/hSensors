@@ -1,6 +1,6 @@
 /**
  ******************************************************************************
- * \file    Hitechnic_Accel.h
+ * \file    Hitechnic_ColorV2.h
  * \author  Husarion team
  * \version V0.9
  * \date    2-June-2014
@@ -22,8 +22,8 @@
  ******************************************************************************
  */
 
-#ifndef __HITECHNIC_ACCEL_H__
-#define __HITECHNIC_ACCEL_H__
+#ifndef __HITECHNIC_COLORV2_H__
+#define __HITECHNIC_COLORV2_H__
 
 #include <hFramework.h>
 
@@ -32,43 +32,37 @@ namespace hSensors
 /**
  * @brief Provides interface for Hitechnic Accelerometer sensor.
  */
-class Hitechnic_Accel
+class Hitechnic_ColorV2
 {
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
-
+	
 	/**
 	 * @brief Create sensor object.
 	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
 	 * implementation (eg. hSens3.getSoftwareI2C(), hSens4.getSoftwareI2C())
 	 */
-	Hitechnic_Accel(ISensor_i2c& sensor);
-	~Hitechnic_Accel(); //!< Destory sensor object.
-
+	Hitechnic_ColorV2(ISensor_i2c& sensor);
+	~Hitechnic_ColorV2(); //!< Destory sensor object.
+	
 	void init(); //!< Initialize sensor.
 	void deinit(); //! Deinitialize sensor.
-
-	/**
-	 * @brief Read raw acceleration data.
-	 * @param x - x axis 
-	 * @param y - y axis
-	 * @param z - z axis
-	 * @return error code
-	 */
-	EError readRaw(int16_t& x, int16_t& y, int16_t& z);
-
-	/**
-	 * @brief Read acceleration data.
-	 * @param x - x axis in g
-	 * @param y - y axiin gs
-	 * @param z - z axiin gs
-	 * @return error code
-	 */
-	EError read(float& x, float& y, float& z);
-
+	
+	int readColor();
+	bool readRGB(uint8_t &red, uint8_t &green, uint8_t &blue);
+	bool readHSV(float &hue, float &saturation, float &value);
+	bool readWhite(int &white);
+	bool readNormRGB(int &red, int &green, int &blue);
+	bool readRawRGB(bool passive, long &red, long &green, long &blue);
+	bool readRawWhite(bool passive, long &white);
+	int readColorIndex();
+	
 private:
 	ISensor_i2c &sens;
 	bool initialized;
+	int mode;
+	
+	bool sendCommand(uint8_t command);
 };
 
 }
