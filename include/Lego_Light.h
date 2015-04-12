@@ -36,35 +36,21 @@ class Lego_Light
 {
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
-
+	
 	/**
-	 * @brief Create accelerometer object.
-	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2)
+	 * @brief Create sensor object.
+	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
 	Lego_Light(ISensor_i2c& sensor);
 	~Lego_Light(); //!< Destory gyro object.
-
-	void init(); //!< Initialize accelerometer.
-	void deinit(); //! Deinitialize accelerometer.
-
-	/**
-	 * @brief Read raw acceleration data.
-	 * @param x - x axis 
-	 * @param y - y axis
-	 * @param z - z axis
-	 * @return error code
-	 */
-	EError readRaw(int16_t& x, int16_t& y, int16_t& z);
-
-	/**
-	 * @brief Read acceleration data.
-	 * @param x - x axis in g
-	 * @param y - y axiin gs
-	 * @param z - z axiin gs
-	 * @return error code
-	 */
-	EError read(float& x, float& y, float& z);
-
+	
+	void init(); //!< Initialize sensor.
+	void deinit(); //! Deinitialize sensor.
+	
+	int readRaw();
+	void setActive();
+	void setInactive();
+	
 private:
 	ISensor_i2c &sens;
 	bool initialized;
