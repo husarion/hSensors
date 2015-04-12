@@ -36,14 +36,14 @@ class Hitechnic_Gyro
 {
 public:
 	/**
-	 * @brief Create gyro object.
+	 * @brief Create sensor object.
 	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
 	Hitechnic_Gyro(hSensor& sensor);
-	~Hitechnic_Gyro(); //!< Destory gyro object.
+	~Hitechnic_Gyro(); //!< Destory sensor object.
 
-	void init(); //!< Initialize gyro.
-	void deinit(); //! Deinitialize gyro.
+	void init(); //!< Initialize sensor.
+	void deinit(); //! Deinitialize sensor.
 
 	uint16_t read();
 

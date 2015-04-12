@@ -38,14 +38,15 @@ public:
 	enum EError { ERROR_OK, ERROR_PROTO };
 
 	/**
-	 * @brief Create accelerometer object.
-	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2)
+	 * @brief Create sensor object.
+	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
+	 * implementation (eg. hSens3.getSoftwareI2C(), hSens4.getSoftwareI2C())
 	 */
 	Hitechnic_Accel(ISensor_i2c& sensor);
-	~Hitechnic_Accel(); //!< Destory gyro object.
+	~Hitechnic_Accel(); //!< Destory sensor object.
 
-	void init(); //!< Initialize accelerometer.
-	void deinit(); //! Deinitialize accelerometer.
+	void init(); //!< Initialize sensor.
+	void deinit(); //! Deinitialize sensor.
 
 	/**
 	 * @brief Read raw acceleration data.

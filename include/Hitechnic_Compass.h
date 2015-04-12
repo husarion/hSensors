@@ -41,14 +41,15 @@ public:
 	enum EError { ERROR_OK, ERROR_PROTO };
 
 	/**
-	 * @brief Create compass object.
-	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2)
+	 * @brief Create sensor object.
+	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
+	 * implementation (eg. hSens3.getSoftwareI2C(), hSens4.getSoftwareI2C())
 	 */
 	Hitechnic_Compass(ISensor_i2c& sensor);
-	~Hitechnic_Compass(); //!< Destory compass object.
+	~Hitechnic_Compass(); //!< Destory sensor object.
 
-	void init(); //!< Initialize compass.
-	void deinit(); //!< Deinitialize compass.
+	void init(); //!< Initialize sensor.
+	void deinit(); //!< Deinitialize sensor.
 
 	/**
 	 * @brief Start calibration mode.
