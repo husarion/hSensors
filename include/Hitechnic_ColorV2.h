@@ -46,7 +46,7 @@ public:
 	~Hitechnic_ColorV2(); //!< Destory sensor object.
 	
 	void init(); //!< Initialize sensor.
-	void deinit(); //! Deinitialize sensor.
+	void deinit(); //!< Deinitialize sensor.
 	
 	int readColor();
 	bool readRGB(uint8_t &red, uint8_t &green, uint8_t &blue);

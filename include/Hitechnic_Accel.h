@@ -46,7 +46,7 @@ public:
 	~Hitechnic_Accel(); //!< Destory sensor object.
 
 	void init(); //!< Initialize sensor.
-	void deinit(); //! Deinitialize sensor.
+	void deinit(); //!< Deinitialize sensor.
 
 	/**
 	 * @brief Read raw acceleration data.

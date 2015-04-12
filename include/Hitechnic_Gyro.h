@@ -43,7 +43,7 @@ public:
 	~Hitechnic_Gyro(); //!< Destory sensor object.
 
 	void init(); //!< Initialize sensor.
-	void deinit(); //! Deinitialize sensor.
+	void deinit(); //!< Deinitialize sensor.
 
 	uint16_t read();
 

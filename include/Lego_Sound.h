@@ -45,7 +45,7 @@ public:
 	~Lego_Sound(); //!< Destory gyro object.
 	
 	void init(); //!< Initialize sensor.
-	void deinit(); //! Deinitialize sensor.
+	void deinit(); //!< Deinitialize sensor.
 	
 	int readRaw();
 	int readNorm();

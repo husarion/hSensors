@@ -45,7 +45,7 @@ public:
 	~Lego_Light(); //!< Destory gyro object.
 	
 	void init(); //!< Initialize sensor.
-	void deinit(); //! Deinitialize sensor.
+	void deinit(); //!< Deinitialize sensor.
 	
 	int readRaw();
 	void setActive();
