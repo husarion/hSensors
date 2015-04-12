@@ -19,6 +19,7 @@ add_hexecutable(hitechnic_colorv2 ../examples/hitechnic_colorv2.cpp)
 add_hexecutable(lego_light ../examples/lego_light.cpp)
 add_hexecutable(lego_sound ../examples/lego_sound.cpp)
 add_hexecutable(lego_touch ../examples/lego_touch.cpp)
+add_hexecutable(lego_ultrasonic ../examples/lego_ultrasonic.cpp)
 
 add_hexecutable(robotc_lego_ultrasonic ../examples/robotc_lego_ultrasonic.cpp)
 add_hexecutable(robotc_lego_touch ../examples/robotc_lego_touch.cpp)
