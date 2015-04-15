@@ -9,8 +9,7 @@ endif()
 
 include(${HFRAMEWORK_PATH}/hFramework.cmake)
 
-# add_component_lib(sensors "${CURRENT_DIR}/../")
-add_component_src("${CURRENT_DIR}/../")
+add_component_lib(sensors "${CURRENT_DIR}/../")
 
 add_hexecutable(hitechnic_accel ../examples/hitechnic_accel.cpp)
 add_hexecutable(hitechnic_gyro ../examples/hitechnic_gyro.cpp)
