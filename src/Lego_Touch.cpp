@@ -28,9 +28,18 @@ void Lego_Touch::deinit()
 	initialized = false;
 }
 
-bool Lego_Touch::readState()
+int Lego_Touch::readState()
 {
 	init();
 	return sens.getPinIntAdc().read();
 }
 
+bool Lego_Touch::isPressed()
+{
+	return readState() == 0;
+}
+
+bool Lego_Touch::isReleased()
+{
+	return readState() != 0;
+}

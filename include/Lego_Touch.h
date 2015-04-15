@@ -47,7 +47,23 @@ public:
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
 	
-	bool readState();
+	/**
+	 * @brief Return state of the button
+	 * @return 1, if button is released, 0 if pressed.
+	 */
+	int readState();
+
+	/**
+	 * @brief Return if button is pressed.
+	 * @return true, if button is pressed, false otherwise.
+	 */
+	bool isPressed();
+
+	/**
+	 * @brief Return if button is released.
+	 * @return true, if button is released, false otherwise.
+	 */
+	bool isReleased();
 	
 private:
 	ISensor &sens;
