@@ -4,7 +4,7 @@
  * \author  Husarion team
  * \version V0.9
  * \date    2-June-2014
- * \brief   Provides interface for Hitechnic Accelerometer sensor.
+ * \brief   Provides interface for Hitechnic Color V2 sensor.
  ******************************************************************************
  * \details This file is part of robocore-sensors library.
  *
@@ -30,7 +30,7 @@
 namespace hSensors
 {
 /**
- * @brief Provides interface for Hitechnic Accelerometer sensor.
+ * @brief Provides interface for Hitechnic Color V2 sensor.
  */
 class Hitechnic_ColorV2
 {

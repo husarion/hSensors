@@ -1,10 +1,10 @@
 /**
  ******************************************************************************
- * \file    lego-ultrasonic.h
+ * \file    lego-light.h
  * \author  Husarion team
  * \version V0.9
  * \date    2-June-2014
- * \brief   Provides interface for Lego Touch sensor.
+ * \brief   Provides robotc-like API for Lego Light sensor.
  ******************************************************************************
  * \details This file is part of robocore-sensors library.
  *
