@@ -14,6 +14,7 @@ static void _init(tLegoSensor_i2c& link)
 {
 	link.sens.currentSourceOn(1);
 	link.sens.selectI2C();
+	link.sens.getI2C().setDataRate(10000);
 	link.initialized = true;
 }
 int USreadDist(tLegoSensor_i2c& link)

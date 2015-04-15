@@ -30,6 +30,7 @@ void Lego_Ultrasonic::init()
 	sens.currentSourceOn(1);
 	sens.selectI2C();
 	sens.getI2C().setDataRate(10000);
+	initialized = true;
 }
 void Lego_Ultrasonic::deinit()
 {
