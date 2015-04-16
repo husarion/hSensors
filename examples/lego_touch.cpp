@@ -14,9 +14,9 @@ void hMain(void)
 	
 	for (;;)
 	{
-		bool state = sensor.readState();
+		bool pressed = sensor.isPressed();
 		LED1.toggle();
-		printf("state %d\r\n", state);
+		printf("state %d\r\n", pressed);
 		sys.delay_ms(10);
 	}
 }
