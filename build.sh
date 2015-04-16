@@ -24,7 +24,7 @@ for type in $TYPES; do
 
 		if [ "$ENABLE_DEBUG" = "1" ]; then
 			rm -rf build_tmp/
-			cmake -DHFRAMEWORK_PATH=$HFRAMEWORK_PATH -DROBOCORE_VERSION=$ver -DROBOCORE_TYPE=$type $ARG -H. -Bbuild_tmp
+			cmake -DHFRAMEWORK_PATH=$HFRAMEWORK_PATH -DROBOCORE_VERSION=$ver -DROBOCORE_TYPE=$type $ARG -DDEBUG=1 -H. -Bbuild_tmp
 			make -C build_tmp/
 			cp build_tmp/${NAME}d.a libs/RoboCORE_${ver}_${type}/${NAME}d.a
 		fi
