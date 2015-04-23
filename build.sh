@@ -12,7 +12,7 @@ fi
 
 TYPES="mini big"
 TYPES="big"
-VERSIONS="0_9_5 0_9_6"
+VERSIONS="0_9_5 0_9_6 0_9_7"
 NAME=libsensors
 
 rm -rf libs/
