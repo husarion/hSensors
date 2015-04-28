@@ -3,33 +3,25 @@ get_filename_component(CURRENT_DIR ${CMAKE_CURRENT_LIST_FILE} PATH) # for cmake 
 
 project(robocore-sensors C CXX ASM)
 
-option(DEBUG "Enable debug informations" OFF)
-
 if(NOT HFRAMEWORK_PATH)
 	set(HFRAMEWORK_PATH ${CURRENT_DIR}/hFramework/)
 endif()
 
 set(debug_flags "-DSENSORS_DEBUG")
 
-if(DEBUG)
-	set(debug_flags "${debug_flags} -DDEBUG")
-endif()
-
 include(${HFRAMEWORK_PATH}/robocore_common.cmake)
-
-include_directories("${CURRENT_DIR}/include/")
-include_directories("${CURRENT_DIR}/include/robotc/")
-
-set(CMAKE_CXX_FLAGS "${common_flags} -std=c++11")
-set(CMAKE_C_FLAGS "${common_flags} -std=c99")
-
-FILE(GLOB tmp "${CURRENT_DIR}/src/*.cpp")
-list(APPEND srcs ${tmp})
-FILE(GLOB tmp "${CURRENT_DIR}/src/robotc/*.cpp")
-list(APPEND srcs ${tmp})
+include(${CURRENT_DIR}/hSensors.cmake)
 
 if(NOT RELEASE)
-	add_library(sensorsd ${srcs})
+	set(TARGET_NAME hSensorsd)
 else()
-	add_library(sensors ${srcs})
+	set(TARGET_NAME hSensors)
 endif()
+
+add_library(${TARGET_NAME} bindir ${HSENSORS_SOURCES})
+
+set(BINDIR "${CURRENT_DIR}/libs/RoboCORE_${ROBOCORE_VERSION}_${ROBOCORE_TYPE}")
+add_custom_command(OUTPUT bindir COMMAND mkdir -p ${BINDIR})
+set_target_properties(${TARGET_NAME}
+	PROPERTIES
+	ARCHIVE_OUTPUT_DIRECTORY ${BINDIR})

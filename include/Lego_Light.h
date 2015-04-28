@@ -41,7 +41,7 @@ public:
 	 * @brief Create sensor object.
 	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
-	Lego_Light(ISensor_i2c& sensor);
+	Lego_Light(ISensor& sensor);
 	~Lego_Light(); //!< Destory sensor object.
 	
 	void init(); //!< Initialize sensor.
@@ -52,7 +52,7 @@ public:
 	void setInactive();
 	
 private:
-	ISensor_i2c &sens;
+	ISensor &sens;
 	bool initialized;
 };
 
