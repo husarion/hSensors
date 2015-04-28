@@ -1,0 +1,51 @@
+name:hPySensors
+# include:hFramework.h
+namespace:hFramework
+num:0x06000000
+
+include:Lego_Touch.h
+include:Lego_Ultrasonic.h
+include:Lego_Light.h
+include:Lego_Sound.h
+include:Hitechnic_Accel.h
+include:Hitechnic_Gyro.h
+include:Hitechnic_Compass.h
+include:Hitechnic_ColorV2.h
+namespace:hSensors
+
+class:Lego_Touch
+	constructor:ISensor&
+	method:void:init
+	method:void:deinit
+	method:bool:readState
+	method:bool:isPressed
+	method:bool:isReleased
+endclass
+
+class:Lego_Light
+	constructor:ISensor&
+	method:void:init
+	method:void:deinit
+	method:int:readRaw
+	method:void:setActive
+	method:void:setInactive
+endclass
+
+class:Lego_Ultrasonic
+	constructor:ISensor_i2c&
+	method:int:readDist
+	method:bool:readDistances:buffer[byte,out,8]
+	method:bool:setSingleMode
+	method:bool:setContinuousMode
+	method:bool:setOff
+	method:bool:setEventCapture
+	method:bool:reset
+endclass
+
+class:Hitechnic_Accel
+	constructor:ISensor_i2c&
+	method:void:init
+	method:void:deinit
+	method:int:readRaw:int16_t&:int16_t&:int16_t&
+	method:int:read:float&:float&:float&
+endclass
