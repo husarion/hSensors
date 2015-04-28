@@ -22,6 +22,16 @@ class:Lego_Touch
 	method:bool:isReleased
 endclass
 
+class:Lego_Sound
+	constructor:ISensor&
+	method:void:init
+	method:void:deinit
+	method:int:readRaw
+	method:int:readNorm
+	method:void:setDBA
+	method:void:setDB
+endclass
+
 class:Lego_Light
 	constructor:ISensor&
 	method:void:init
