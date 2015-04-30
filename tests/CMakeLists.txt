@@ -12,7 +12,7 @@ include(${HFRAMEWORK_PATH}/hFramework.cmake)
 if(DEVEL)
 	add_component_src("${CURRENT_DIR}/../")
 else()
-	add_component_lib(sensors "${CURRENT_DIR}/../")
+	add_component_lib(hSensors "${CURRENT_DIR}/../")
 endif()
 
 add_hexecutable(hitechnic_accel ../examples/hitechnic_accel.cpp)

@@ -1,6 +1,7 @@
 #!/bin/bash -e
 ARG1=""
 if [ ! -z "$TOOLCHAIN_PATH" ]; then
+	TOOLCHAIN_PATH=$(readlink -f $TOOLCHAIN_PATH)
 	ARG1="-DTOOLCHAIN_PATH=$TOOLCHAIN_PATH"
 fi
 
