@@ -30,13 +30,11 @@ for type in $TYPES; do
 			rm -rf build_tmp/
 			cmake -DHFRAMEWORK_PATH=$HFRAMEWORK_PATH -DROBOCORE_VERSION=$ver -DROBOCORE_TYPE=$type $ARG -DDEBUG=1 -H. -Bbuild_tmp
 			make -C build_tmp/
-			cp build_tmp/${NAME}d.a libs/RoboCORE_${ver}_${type}/${NAME}d.a
 		fi
 
 		rm -rf build_tmp/
 		cmake -DHFRAMEWORK_PATH=$HFRAMEWORK_PATH -DROBOCORE_VERSION=$ver -DROBOCORE_TYPE=$type $ARG -DRELEASE=1 -H. -Bbuild_tmp
 		make -C build_tmp/
-		cp build_tmp/${NAME}.a libs/RoboCORE_${ver}_${type}/${NAME}.a
 	done
 done
 
