@@ -2,17 +2,25 @@
 import argparse, os, sys, subprocess, shutil, copy
 
 def run():
-	TOOLCHAIN_PATH = os.getenv("TOOLCHAIN_PATH", "../toolchain")
-	TOOLCHAIN_PATH = os.path.realpath(TOOLCHAIN_PATH)
+	params = {}
 
-	HFRAMEWORK_PATH = os.getenv("HFRAMEWORK_PATH", "../hFramework")
-	HFRAMEWORK_PATH = os.path.realpath(HFRAMEWORK_PATH)
+	path = os.getenv("TOOLCHAIN_PATH", "../toolchain")
+	params["TOOLCHAIN_PATH"] = os.path.realpath(path)
+
+	path = os.getenv("HFRAMEWORK_PATH", "../hFramework")
+	if path is not None:
+		params["HFRAMEWORK_PATH"] = os.path.realpath(path)
+
+	path = os.getenv("HPYTHON_PATH", "../hPython")
+	if path is not None:
+		params["HPYTHON_PATH"] = os.path.realpath(path)
 
 	args = argparse.ArgumentParser()
 	args.add_argument("--debug", action="store_true")
 	args.add_argument("--release", action="store_true")
-	args.add_argument("--hsensors", action="store_true")
+	args.add_argument("--main", action="store_true")
 	args.add_argument("--pyconnector", action="store_true")
+	args.add_argument("--doc", action="store_true")
 	args = args.parse_args()
 
 	types=["big"]
@@ -21,11 +29,9 @@ def run():
 	rmdir("libs/")
 	os.mkdir("libs")
 
-	params = { "TOOLCHAIN_PATH": TOOLCHAIN_PATH, "HFRAMEWORK_PATH": HFRAMEWORK_PATH }
-
 	for type in types:
 		for version in versions:
-			if args.hsensors:
+			if args.main:
 				if args.debug:
 					build(type, version, True, ".", params)
 				if args.release:
@@ -36,6 +42,10 @@ def run():
 					build(type, version, True, "py-connector/", params)
 				if args.release:
 					build(type, version, False, "py-connector/", params)
+	
+	if args.doc:
+		os.chdir("doc")
+		subprocess.check_call(["./build.sh"])
 
 def build(type, version, debug, path, params):
 	print(type, version, debug)
