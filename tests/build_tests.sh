@@ -31,9 +31,7 @@ fi
 
 TYPES="mini big"
 TYPES="big"
-VERSIONS="0_9_5 0_9_6"
-
-EXAMPLES="lego_ultrasonic"
+VERSIONS="0_9_5 0_9_6 0_9_7"
 
 cd $TESTS_DIR
 

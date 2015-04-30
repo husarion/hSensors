@@ -22,14 +22,14 @@ else()
 endif()
 
 set(HPYFRAMEWORK_SOURCES
-	${CURRENT_PY_DIR}/gen_hPySensors.h
-	${CURRENT_PY_DIR}/gen_hPySensors.c
-	${CURRENT_PY_DIR}/gen_hPySensors.cpp)
+	${CMAKE_CURRENT_BINARY_DIR}/gen_hPySensors.h
+	${CMAKE_CURRENT_BINARY_DIR}/gen_hPySensors.c
+	${CMAKE_CURRENT_BINARY_DIR}/gen_hPySensors.cpp)
 
 set(EXPORTS_FILE ${CURRENT_PY_DIR}/exports)
 
 add_custom_command(OUTPUT ${HPYFRAMEWORK_SOURCES}
-	COMMAND python2.7 ${CURRENT_PY_DIR}/mpy-gen/generate.py --config ${EXPORTS_FILE} --outdir ${CURRENT_PY_DIR}
+	COMMAND python2.7 ${CURRENT_PY_DIR}/mpy-gen/generate.py --config ${EXPORTS_FILE} --outdir ${CMAKE_CURRENT_BINARY_DIR}
 		--extern ${HFRAMEWORK_PATH}/py-connector/exports
 	DEPENDS ${EXPORTS_FILE})
 
