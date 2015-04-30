@@ -5,6 +5,10 @@ if [ ! -z "$TOOLCHAIN_PATH" ]; then
 	ARG="-DTOOLCHAIN_PATH=$TOOLCHAIN_PATH"
 fi
 
+if [ ! -z "$HFRAMEWORK_PATH" ]; then
+	HFRAMEWORK_PATH=$(readlink -f $HFRAMEWORK_PATH)
+fi
+
 ENABLE_DEBUG=0
 if [ "$1" = "debug" ]; then
 	ENABLE_DEBUG=1
@@ -13,7 +17,7 @@ fi
 TYPES="mini big"
 TYPES="big"
 VERSIONS="0_9_5 0_9_6 0_9_7"
-NAME=libsensors
+NAME=libhSensors
 
 rm -rf libs/
 mkdir -p libs
