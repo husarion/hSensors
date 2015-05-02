@@ -1,6 +1,10 @@
 #!/usr/bin/python
 import argparse, os, sys, subprocess, shutil, copy
 
+def log(txt):
+	sys.stdout.write(txt + "\n")
+	sys.stdout.flush()
+
 def run():
 	params = {}
 
@@ -37,7 +41,7 @@ def run():
 				if args.release:
 					build(type, version, False, ".", params)
 
-			if args.pyconnector:
+			if args.pyconnector and os.path.exists("py-connector/"):
 				if args.debug:
 					build(type, version, True, "py-connector/", params)
 				if args.release:
@@ -48,7 +52,7 @@ def run():
 		subprocess.check_call(["./build.sh"])
 
 def build(type, version, debug, path, params):
-	print(type, version, debug)
+	log("{0} {1} {2}".format(type, version, debug))
 
 	params = copy.copy(params)
 	params["ROBOCORE_TYPE"] = type
