@@ -26,6 +26,10 @@ def run():
     if path is not None:
         params["HPYTHON_PATH"] = os.path.realpath(path)
 
+    path = os.getenv("HSENSORS_PATH", "../hSensors")
+    if path is not None:
+        params["HSENSORS_PATH"] = os.path.realpath(path)
+
     args = argparse.ArgumentParser()
     args.add_argument("--debug", action="store_true")
     args.add_argument("--release", action="store_true")
@@ -38,6 +42,8 @@ def run():
 
     rmdir("libs/")
     os.mkdir("libs")
+    rmdir("bin/")
+    os.mkdir("bin")
 
     for info in args.versions.strip().split(","):
         (type, version) = info.split(":")
