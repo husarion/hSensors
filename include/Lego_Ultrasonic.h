@@ -48,14 +48,14 @@ public:
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
 	
-    int readDist(); //!< Reads distance from sensor.
-	bool readDistances(uint8_t distances[8]);
-	bool setSingleMode();
+    int readDist(); //!< Read distance from sensor.
+    bool readDistances(uint8_t distances[8]); //!< Read last 8 distances from sensor.
+    bool setSingleMode();
 	bool setContinuousMode();
-	bool setOff();
+    bool setOff(); //!< Turn the sensor off.
 	bool setEventCapture();
-	bool reset();
-	
+    bool reset(); //!< Reset the sensor.
+
 private:
 	ISensor_i2c &sens;
 	bool initialized;
