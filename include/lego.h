@@ -30,20 +30,17 @@
 /**
  * @brief Provides interface for Lego robotc-like API.
  */
-class tLegoSensor
-{
+class tLegoSensor {
 public:
 	ISensor &sens;
 	bool initialized;
 	int mode, state;
-	
+
 	tLegoSensor(ISensor& sens) : sens(sens), initialized(false) { }
-	~tLegoSensor()
-	{
+	~tLegoSensor() {
 		deinit();
 	}
-	void deinit()
-	{
+	void deinit() {
 		sens.selectGPIO();
 		sens.getPinIntAdc().disableADC();
 		sens.getPin1().setIn();
@@ -52,20 +49,17 @@ public:
 	}
 };
 
-class tLegoSensor_i2c
-{
+class tLegoSensor_i2c {
 public:
 	ISensor_i2c &sens;
 	bool initialized;
 	int mode, state;
 
 	tLegoSensor_i2c(ISensor_i2c& sens) : sens(sens), initialized(false) { }
-	~tLegoSensor_i2c()
-	{
+	~tLegoSensor_i2c() {
 		deinit();
 	}
-	void deinit()
-	{
+	void deinit() {
 		sens.selectGPIO();
 		sens.getPinIntAdc().disableADC();
 		sens.getPin1().setIn();

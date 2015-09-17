@@ -27,26 +27,24 @@
 
 #include <hFramework.h>
 
-namespace hSensors
-{
+namespace hSensors {
 /**
  * @brief Provides interface for Lego Touch sensor.
  */
-class Lego_Touch
-{
+class Lego_Touch {
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
-	
+
 	/**
 	 * @brief Create sensor object.
 	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
 	Lego_Touch(ISensor& sensor);
 	~Lego_Touch(); //!< Destory sensor object.
-	
+
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
-	
+
 	/**
 	 * @brief Return state of the button
 	 * @return 1, if button is released, 0 if pressed.
@@ -64,7 +62,7 @@ public:
 	 * @return true, if button is released, false otherwise.
 	 */
 	bool isReleased();
-	
+
 private:
 	ISensor &sens;
 	bool initialized;

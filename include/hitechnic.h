@@ -30,8 +30,7 @@
 /**
  * @brief Provides interface for Hitechnic robotc-like API.
  */
-class tHitechnicSensor
-{
+class tHitechnicSensor {
 public:
 	ISensor_i2c &sens;
 	bool initialized;
@@ -39,12 +38,10 @@ public:
 	float param1;
 
 	tHitechnicSensor(ISensor_i2c& sens) : sens(sens), initialized(false) { }
-	~tHitechnicSensor()
-	{
+	~tHitechnicSensor() {
 		deinit();
 	}
-	void deinit()
-	{
+	void deinit() {
 		sens.selectGPIO();
 		sens.getPinIntAdc().disableADC();
 		sens.getPin1().setIn();

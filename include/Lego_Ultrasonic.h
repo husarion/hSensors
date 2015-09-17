@@ -27,39 +27,37 @@
 
 #include <hFramework.h>
 
-namespace hSensors
-{
+namespace hSensors {
 /**
  * @brief Provides interface for Lego Ultrasonic sensor.
  */
-class Lego_Ultrasonic
-{
+class Lego_Ultrasonic {
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
-	
+
 	/**
 	 * @brief Create sensor object.
 	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
-     * implementation (eg. \c hSens3.getSoftwareI2C(), \c hSens4.getSoftwareI2C())
+	 * implementation (eg. \c hSens3.getSoftwareI2C(), \c hSens4.getSoftwareI2C())
 	 */
 	Lego_Ultrasonic(ISensor_i2c& sensor);
 	~Lego_Ultrasonic(); //!< Destory sensor object.
-	
+
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
-	
-    int readDist(); //!< Read distance from sensor.
-    bool readDistances(uint8_t distances[8]); //!< Read last 8 distances from sensor.
-    bool setSingleMode();
+
+	int readDist(); //!< Read distance from sensor.
+	bool readDistances(uint8_t distances[8]); //!< Read last 8 distances from sensor.
+	bool setSingleMode();
 	bool setContinuousMode();
-    bool setOff(); //!< Turn the sensor off.
+	bool setOff(); //!< Turn the sensor off.
 	bool setEventCapture();
-    bool reset(); //!< Reset the sensor.
+	bool reset(); //!< Reset the sensor.
 
 private:
 	ISensor_i2c &sens;
 	bool initialized;
-	
+
 	bool sendCmd(uint8_t command);
 };
 

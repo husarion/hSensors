@@ -30,13 +30,11 @@
 #define MODE_MEASURING   0x00
 #define MODE_CALIBRATION 0x43
 
-namespace hSensors
-{
+namespace hSensors {
 /**
  * @brief Provides interface for Hitechnic Compass sensor.
  */
-class Hitechnic_Compass
-{
+class Hitechnic_Compass {
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
 

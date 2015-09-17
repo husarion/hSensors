@@ -27,20 +27,18 @@
 
 #include <hFramework.h>
 
-namespace hSensors
-{
+namespace hSensors {
 /**
  * @brief Provides interface for Hitechnic Accelerometer sensor.
  */
-class Hitechnic_Accel
-{
+class Hitechnic_Accel {
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
 
 	/**
 	 * @brief Create sensor object.
-     * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
-     * implementation (eg. \c hSens3.getSoftwareI2C(), \c hSens4.getSoftwareI2C())
+	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
+	 * implementation (eg. \c hSens3.getSoftwareI2C(), \c hSens4.getSoftwareI2C())
 	 */
 	Hitechnic_Accel(ISensor_i2c& sensor);
 	~Hitechnic_Accel(); //!< Destory sensor object.
@@ -50,18 +48,18 @@ public:
 
 	/**
 	 * @brief Read raw acceleration data.
-     * @param x x axis
-     * @param y y axis
-     * @param z z axis
+	 * @param x x axis
+	 * @param y y axis
+	 * @param z z axis
 	 * @return error code
 	 */
 	EError readRaw(int16_t& x, int16_t& y, int16_t& z);
 
 	/**
 	 * @brief Read acceleration data.
-     * @param x x axis in g
-     * @param y y axis in g
-     * @param z z axis in g
+	 * @param x x axis in g
+	 * @param y y axis in g
+	 * @param z z axis in g
 	 * @return error code
 	 */
 	EError read(float& x, float& y, float& z);

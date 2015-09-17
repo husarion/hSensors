@@ -27,30 +27,28 @@
 
 #include <hFramework.h>
 
-namespace hSensors
-{
+namespace hSensors {
 /**
  * @brief Provides interface for Lego Light sensor.
  */
-class Lego_Light
-{
+class Lego_Light {
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
-	
+
 	/**
 	 * @brief Create sensor object.
 	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
 	Lego_Light(ISensor& sensor);
 	~Lego_Light(); //!< Destory sensor object.
-	
+
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
-	
+
 	int readRaw();
 	void setActive();
 	void setInactive();
-	
+
 private:
 	ISensor &sens;
 	bool initialized;
