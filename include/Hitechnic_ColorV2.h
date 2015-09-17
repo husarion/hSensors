@@ -48,11 +48,11 @@ public:
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
 	
-	int readColor();
-	bool readRGB(uint8_t &red, uint8_t &green, uint8_t &blue);
-	bool readHSV(float &hue, float &saturation, float &value);
-	bool readWhite(int &white);
-	bool readNormRGB(int &red, int &green, int &blue);
+    int readColor();
+    bool readRGB(uint8_t &red, uint8_t &green, uint8_t &blue); //!< Read color as RGB.
+    bool readHSV(float &hue, float &saturation, float &value); //!< Read color as HSV.
+    bool readWhite(int &white); //!< Read grayscale.
+    bool readNormRGB(int &red, int &green, int &blue);
 	bool readRawRGB(bool passive, long &red, long &green, long &blue);
 	bool readRawWhite(bool passive, long &white);
 	int readColorIndex();

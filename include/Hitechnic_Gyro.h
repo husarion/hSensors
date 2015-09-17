@@ -45,7 +45,7 @@ public:
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
 
-	uint16_t read();
+    uint16_t read();
 
 private:
 	hSensor &sensor;

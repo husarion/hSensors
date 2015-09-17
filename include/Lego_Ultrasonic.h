@@ -40,7 +40,7 @@ public:
 	/**
 	 * @brief Create sensor object.
 	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
-	 * implementation (eg. hSens3.getSoftwareI2C(), hSens4.getSoftwareI2C())
+     * implementation (eg. \c hSens3.getSoftwareI2C(), \c hSens4.getSoftwareI2C())
 	 */
 	Lego_Ultrasonic(ISensor_i2c& sensor);
 	~Lego_Ultrasonic(); //!< Destory sensor object.
@@ -48,7 +48,7 @@ public:
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
 	
-	int readDist();
+    int readDist(); //!< Reads distance from sensor.
 	bool readDistances(uint8_t distances[8]);
 	bool setSingleMode();
 	bool setContinuousMode();
