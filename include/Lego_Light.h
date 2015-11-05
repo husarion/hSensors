@@ -45,9 +45,9 @@ public:
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
 
-	int readRaw();
-	void setActive();
-	void setInactive();
+	int readRaw(); //!< Read raw data from sensor
+	void setActive(); //!< Enable sensor
+	void setInactive(); //!< Disable sensor
 
 private:
 	ISensor &sens;
