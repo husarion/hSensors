@@ -6,6 +6,7 @@ import subprocess
 import shutil
 import copy
 
+args = None
 
 def log(txt):
     sys.stdout.write(txt + "\n")
@@ -13,6 +14,8 @@ def log(txt):
 
 
 def run():
+    global args
+
     params = {}
 
     path = os.getenv("TOOLCHAIN_PATH", "../toolchain")
@@ -36,8 +39,11 @@ def run():
     args.add_argument("--main", action="store_true")
     args.add_argument("--pyconnector", action="store_true")
     args.add_argument("--doc", action="store_true")
-    def_versions = "big:0.9.6,big:0.9.7,big:0.9.8"
+    def_versions = "big:0.9.6,big:0.9.7,big:0.9.8,big:1.0.0"
     args.add_argument("--versions", default=def_versions)
+    args.add_argument("--build-revision")
+    args.add_argument("--build-revision-from-git", action="store_true")
+    args.add_argument("--build-version")
     args = args.parse_args()
 
     rmdir("libs/")
@@ -66,24 +72,33 @@ def run():
 
 
 def build(type, version, debug, path, params):
-    log("{0} {1} {2}".format(type, version, debug))
+    global args
+
+    log("{0} {1} {2}".format(type, version, args.debug))
 
     params = copy.copy(params)
     params["ROBOCORE_TYPE"] = type
     params["ROBOCORE_VERSION"] = version
+    if args.build_revision:
+        params["BUILD_REVISION"] = args.build_revision
+    elif args.build_revision_from_git:
+        params["BUILD_REVISION"] = subprocess.check_output('git rev-parse --short HEAD', shell=True).decode('ascii').strip()
+    if args.build_version:
+        params["BUILD_VERSION"] = args.build_version
+
     if debug:
         params["DEBUG"] = "1"
     else:
         params["DEBUG"] = "0"
 
-    args = []
-    args.append("cmake")
-    args.append(path)
-    args.append("-Bbuild_tmp")
-    args += ["-D{0}={1}".format(k, v) for k, v in params.items()]
+    callargs = []
+    callargs.append("cmake")
+    callargs.append(path)
+    callargs.append("-Bbuild_tmp")
+    callargs += ["-D{0}={1}".format(k, v) for k, v in params.items()]
 
     rmdir("build_tmp/")
-    subprocess.check_call(args)
+    subprocess.check_call(callargs)
     subprocess.check_call(["make", "-Cbuild_tmp/"])
 
 
