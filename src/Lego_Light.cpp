@@ -8,7 +8,7 @@
 
 using namespace hSensors;
 
-Lego_Light::Lego_Light(ISensor& sensor) : sens(sensor), initialized(false)
+Lego_Light::Lego_Light(ILegoSensor& sensor) : sens(sensor), initialized(false)
 {
 }
 Lego_Light::~Lego_Light()

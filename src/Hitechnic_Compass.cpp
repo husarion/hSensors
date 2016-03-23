@@ -13,7 +13,7 @@
 
 using namespace hSensors;
 
-Hitechnic_Compass::Hitechnic_Compass(ISensor_i2c& sensor) : sens(sensor), initialized(false)
+Hitechnic_Compass::Hitechnic_Compass(ILegoSensor_i2c& sensor) : sens(sensor), initialized(false)
 {
 }
 Hitechnic_Compass::~Hitechnic_Compass()

@@ -42,7 +42,7 @@ using namespace hSensors;
 
 static void RGBtoHSV(float red, float green, float blue, float &hue, float &sat, float &value);
 
-Hitechnic_ColorV2::Hitechnic_ColorV2(ISensor_i2c& sensor) : sens(sensor), initialized(false)
+Hitechnic_ColorV2::Hitechnic_ColorV2(ILegoSensor_i2c& sensor) : sens(sensor), initialized(false)
 {
 }
 Hitechnic_ColorV2::~Hitechnic_ColorV2()

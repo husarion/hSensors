@@ -6,7 +6,7 @@
 
 using namespace hSensors;
 
-Lego_Sound::Lego_Sound(ISensor& sensor) : sens(sensor), initialized(false)
+Lego_Sound::Lego_Sound(ILegoSensor& sensor) : sens(sensor), initialized(false)
 {
 }
 Lego_Sound::~Lego_Sound()

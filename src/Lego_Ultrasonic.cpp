@@ -15,7 +15,7 @@
 
 using namespace hSensors;
 
-Lego_Ultrasonic::Lego_Ultrasonic(ISensor_i2c& sensor) : sens(sensor), initialized(false)
+Lego_Ultrasonic::Lego_Ultrasonic(ILegoSensor_i2c& sensor) : sens(sensor), initialized(false)
 {
 }
 Lego_Ultrasonic::~Lego_Ultrasonic()

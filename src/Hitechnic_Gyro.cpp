@@ -2,7 +2,7 @@
 
 using namespace hSensors;
 
-Hitechnic_Gyro::Hitechnic_Gyro(ISensor& sensor) : sensor(sensor), initialized(false)
+Hitechnic_Gyro::Hitechnic_Gyro(ILegoSensor& sensor) : sensor(sensor), initialized(false)
 {
 }
 Hitechnic_Gyro::~Hitechnic_Gyro()

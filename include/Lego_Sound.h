@@ -39,7 +39,7 @@ public:
 	 * @brief Create sensor object.
 	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
-	Lego_Sound(ISensor& sensor);
+	Lego_Sound(ILegoSensor& sensor);
 	~Lego_Sound(); //!< Destory sensor object.
 
 	void init(); //!< Initialize sensor.
@@ -51,7 +51,7 @@ public:
 	void setDB();
 
 private:
-	ISensor &sens;
+	ILegoSensor &sens;
 	bool initialized;
 };
 

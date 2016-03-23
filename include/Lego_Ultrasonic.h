@@ -40,7 +40,7 @@ public:
 	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
 	 * implementation (eg. \c hSens3.getSoftwareI2C(), \c hSens4.getSoftwareI2C())
 	 */
-	Lego_Ultrasonic(ISensor_i2c& sensor);
+	Lego_Ultrasonic(ILegoSensor_i2c& sensor);
 	~Lego_Ultrasonic(); //!< Destory sensor object.
 
 	void init(); //!< Initialize sensor.
@@ -55,7 +55,7 @@ public:
 	bool reset(); //!< Reset the sensor.
 
 private:
-	ISensor_i2c &sens;
+	ILegoSensor_i2c &sens;
 	bool initialized;
 
 	bool sendCmd(uint8_t command);

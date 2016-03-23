@@ -8,7 +8,7 @@
 
 using namespace hSensors;
 
-Hitechnic_Accel::Hitechnic_Accel(ISensor_i2c& sensor) : sens(sensor), initialized(false)
+Hitechnic_Accel::Hitechnic_Accel(ILegoSensor_i2c& sensor) : sens(sensor), initialized(false)
 {
 }
 Hitechnic_Accel::~Hitechnic_Accel()

@@ -40,7 +40,7 @@ public:
 	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
 	 * implementation (eg. \c hSens3.getSoftwareI2C(), \c hSens4.getSoftwareI2C())
 	 */
-	Hitechnic_Accel(ISensor_i2c& sensor);
+	Hitechnic_Accel(ILegoSensor_i2c& sensor);
 	~Hitechnic_Accel(); //!< Destory sensor object.
 
 	void init(); //!< Initialize sensor.
@@ -65,7 +65,7 @@ public:
 	EError read(float& x, float& y, float& z);
 
 private:
-	ISensor_i2c &sens;
+	ILegoSensor_i2c &sens;
 	bool initialized;
 };
 

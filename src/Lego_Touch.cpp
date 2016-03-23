@@ -6,7 +6,7 @@
 
 using namespace hSensors;
 
-Lego_Touch::Lego_Touch(ISensor& sensor) : sens(sensor), initialized(false)
+Lego_Touch::Lego_Touch(ILegoSensor& sensor) : sens(sensor), initialized(false)
 {
 }
 Lego_Touch::~Lego_Touch()

@@ -40,7 +40,7 @@ public:
 	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
 	 * implementation (eg. hSens3.getSoftwareI2C(), hSens4.getSoftwareI2C())
 	 */
-	Hitechnic_ColorV2(ISensor_i2c& sensor);
+	Hitechnic_ColorV2(ILegoSensor_i2c& sensor);
 	~Hitechnic_ColorV2(); //!< Destory sensor object.
 
 	void init(); //!< Initialize sensor.
@@ -56,7 +56,7 @@ public:
 	int readColorIndex();
 
 private:
-	ISensor_i2c &sens;
+	ILegoSensor_i2c &sens;
 	bool initialized;
 	int mode;
 

@@ -43,7 +43,7 @@ public:
 	 * @param sensor - I2C capable hSensor port (eg. hSens1, hSens2) or software I2C
 	 * implementation (eg. hSens3.getSoftwareI2C(), hSens4.getSoftwareI2C())
 	 */
-	Hitechnic_Compass(ISensor_i2c& sensor);
+	Hitechnic_Compass(ILegoSensor_i2c& sensor);
 	~Hitechnic_Compass(); //!< Destory sensor object.
 
 	void init(); //!< Initialize sensor.
@@ -77,7 +77,7 @@ public:
 	EError readHeading(uint16_t& heading);
 
 private:
-	ISensor_i2c &sens;
+	ILegoSensor_i2c &sens;
 	bool initialized;
 };
 

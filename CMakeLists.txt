@@ -20,7 +20,7 @@ endif()
 
 add_library(${TARGET_NAME} bindir ${HSENSORS_SOURCES})
 
-set(BINDIR "${CURRENT_DIR}/libs/RoboCORE_${ROBOCORE_VERSION}_${ROBOCORE_TYPE}")
+set(BINDIR "${CURRENT_DIR}/${LIB_DIR_NAME}")
 add_custom_command(OUTPUT bindir COMMAND mkdir -p ${BINDIR})
 set_target_properties(${TARGET_NAME}
 	PROPERTIES

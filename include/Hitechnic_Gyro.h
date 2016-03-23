@@ -37,7 +37,7 @@ public:
 	 * @brief Create sensor object.
 	 * @param sensor hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
-	Hitechnic_Gyro(ISensor& sensor);
+	Hitechnic_Gyro(ILegoSensor& sensor);
 	~Hitechnic_Gyro(); //!< Destory sensor object.
 
 	void init(); //!< Initialize sensor.
@@ -46,7 +46,7 @@ public:
 	uint16_t read(); //!< Read angle from the sensor.
 
 private:
-	ISensor &sensor;
+	ILegoSensor &sensor;
 	bool initialized;
 };
 
