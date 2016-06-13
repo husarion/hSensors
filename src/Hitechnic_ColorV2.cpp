@@ -69,12 +69,12 @@ int Hitechnic_ColorV2::readColor()
 	init();
 	if (mode != HTCS2_MODE_ACTIVE)
 		sendCommand(HTCS2_MODE_ACTIVE);
-		
+
 	uint8_t tx[1], rx[3];
 	tx[0] = HTCS2_OFFSET + HTCS2_COLNUM_REG;
 	if (!sens.getI2C().read(1, tx, 1, rx, 1))
 		return 0;
-		
+
 	return rx[0];
 }
 bool Hitechnic_ColorV2::readRGB(uint8_t &red, uint8_t &green, uint8_t &blue)
@@ -87,20 +87,20 @@ bool Hitechnic_ColorV2::readRGB(uint8_t &red, uint8_t &green, uint8_t &blue)
 	tx[0] = HTCS2_OFFSET + HTCS2_RED_REG;
 	if (!sens.getI2C().read(1, tx, 1, rx, 3))
 		return false;
-		
+
 	red = rx[0];
 	green = rx[1];
 	blue = rx[2];
-	
+
 	return true;
 }
 bool Hitechnic_ColorV2::readHSV(float &hue, float &saturation, float &value)
 {
 	uint8_t red, green, blue;
-	
+
 	bool ret = readRGB(red, green, blue);
 	RGBtoHSV(red, green, blue, hue, saturation, value);
-	
+
 	return ret;
 }
 bool Hitechnic_ColorV2::readWhite(int &white)
@@ -113,9 +113,9 @@ bool Hitechnic_ColorV2::readWhite(int &white)
 	tx[0] = HTCS2_OFFSET + HTCS2_WHITE_REG;
 	if (!sens.getI2C().read(1, tx, 1, rx, 1))
 		return false;
-		
+
 	white = rx[0];
-	
+
 	return true;
 }
 bool Hitechnic_ColorV2::readNormRGB(int &red, int &green, int &blue)
@@ -125,11 +125,11 @@ bool Hitechnic_ColorV2::readNormRGB(int &red, int &green, int &blue)
 	tx[0] = HTCS2_OFFSET + HTCS2_RED_NORM_REG;
 	if (!sens.getI2C().read(1, tx, 1, rx, 3))
 		return false;
-		
+
 	red = rx[0];
 	green = rx[1];
 	blue = rx[2];
-	
+
 	return true;
 }
 bool Hitechnic_ColorV2::readRawRGB(bool passive, long &red, long &green, long &blue)
@@ -144,11 +144,11 @@ bool Hitechnic_ColorV2::readRawRGB(bool passive, long &red, long &green, long &b
 	tx[0] = HTCS2_OFFSET + HTCS2_RED_MSB;
 	if (!sens.getI2C().read(1, tx, 1, rx, 8))
 		return false;
-		
-  red =   (long)rx[0] * 256 + rx[1];
-  green = (long)rx[2] * 256 + rx[3];
-  blue =  (long)rx[4] * 256 + rx[5];
-	
+
+	red = (long)rx[0] * 256 + rx[1];
+	green = (long)rx[2] * 256 + rx[3];
+	blue = (long)rx[4] * 256 + rx[5];
+
 	return true;
 }
 bool Hitechnic_ColorV2::readRawWhite(bool passive, long &white)
@@ -163,9 +163,9 @@ bool Hitechnic_ColorV2::readRawWhite(bool passive, long &white)
 	tx[0] = HTCS2_OFFSET + HTCS2_WHITE_MSB;
 	if (!sens.getI2C().read(1, tx, 1, rx, 2))
 		return false;
-		
-  white = (long)rx[0] * 256 + rx[1];
-	
+
+	white = (long)rx[0] * 256 + rx[1];
+
 	return true;
 }
 int Hitechnic_ColorV2::readColorIndex()
@@ -178,7 +178,7 @@ int Hitechnic_ColorV2::readColorIndex()
 	tx[0] = HTCS2_OFFSET + HTCS2_COL_INDEX_REG;
 	if (!sens.getI2C().read(1, tx, 1, rx, 1))
 		return false;
-		
+
 	return rx[0];
 }
 
@@ -199,7 +199,7 @@ static void RGBtoHSV(float red, float green, float blue, float &hue, float &sat,
 	hue = 0;
 	sat = 0;
 	value = 0;
-	
+
 	// Value
 	float rgb_max = max3(red, green, blue);
 	float rgb_min;
@@ -210,12 +210,12 @@ static void RGBtoHSV(float red, float green, float blue, float &hue, float &sat,
 		sat = -1;
 		return;
 	}
-	
+
 	// Saturation
 	red /= rgb_max;
 	green /= rgb_max;
 	blue /= rgb_max;
-	
+
 	rgb_max = max3(red, green, blue);
 	rgb_min = min3(red, green, blue);
 	sat = (rgb_max - rgb_min) * 100;
@@ -224,15 +224,15 @@ static void RGBtoHSV(float red, float green, float blue, float &hue, float &sat,
 		hue = -1;
 		return;
 	}
-	
+
 	// Hue
 	red = (red - rgb_min) / (rgb_max - rgb_min);
 	green = (green - rgb_min) / (rgb_max - rgb_min);
 	blue = (blue - rgb_min) / (rgb_max - rgb_min);
-	
+
 	rgb_max = max3(red, green, blue);
 	rgb_min = min3(red, green, blue);
-	
+
 	if (rgb_max == red)
 	{
 		hue = 0.0 + 60.0 * (green - blue);

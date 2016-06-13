@@ -9,9 +9,9 @@ using namespace hSensors;
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
-	
+
 	Hitechnic_ColorV2 sensor(hSens1);
-	
+
 	for (;;)
 	{
 		uint8_t r, g, b;

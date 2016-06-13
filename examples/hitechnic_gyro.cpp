@@ -9,9 +9,9 @@ using namespace hSensors;
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
-	
+
 	Hitechnic_Gyro sensor(hSens1);
-	
+
 	for (;;)
 	{
 		int16_t rot;

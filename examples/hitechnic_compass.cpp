@@ -9,9 +9,9 @@ using namespace hSensors;
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
-	
+
 	Hitechnic_Compass sensor(hSens1);
-	
+
 	for (;;)
 	{
 		uint16_t heading;

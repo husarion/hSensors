@@ -9,9 +9,9 @@ using namespace hSensors;
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
-	
+
 	Lego_Touch sensor(hSens1);
-	
+
 	for (;;)
 	{
 		bool pressed = sensor.isPressed();

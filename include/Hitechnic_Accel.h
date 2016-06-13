@@ -27,11 +27,13 @@
 
 #include <hFramework.h>
 
-namespace hSensors {
+namespace hSensors
+{
 /**
  * @brief Provides interface for Hitechnic Accelerometer sensor.
  */
-class Hitechnic_Accel {
+class Hitechnic_Accel
+{
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
 

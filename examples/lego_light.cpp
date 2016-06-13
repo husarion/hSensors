@@ -9,9 +9,9 @@ using namespace hSensors;
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
-	
+
 	Lego_Light sensor(hSens1);
-	
+
 	for (;;)
 	{
 		int16_t val;

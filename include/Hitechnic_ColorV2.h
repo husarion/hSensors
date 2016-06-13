@@ -27,11 +27,13 @@
 
 #include <hFramework.h>
 
-namespace hSensors {
+namespace hSensors
+{
 /**
  * @brief Provides interface for Hitechnic Color V2 sensor.
  */
-class Hitechnic_ColorV2 {
+class Hitechnic_ColorV2
+{
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
 
