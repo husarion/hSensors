@@ -28,3 +28,7 @@ set_target_properties(${TARGET_NAME}
 
 add_custom_target(format-all
 	COMMAND astyle -r -n --options=astylerc_cpp 'src/*.cpp' 'examples/*.cpp' 'include/*.h')
+
+add_custom_target(docs
+	COMMAND doxygen doxygen
+	WORKING_DIRECTORY ${CURRENT_DIR}/docs/test/)
