@@ -40,17 +40,17 @@ Mindsensors_LineLeader::EError Mindsensors_LineLeader::init()
 	sens.selectI2C();
 	sens.getI2C().setDataRate(10000);
 	if (!initialized)
-	    return ERROR_PROTO;
+		return ERROR_PROTO;
 	if (wakeUp() == ERROR_PROTO)
-	    return ERROR_PROTO;
+		return ERROR_PROTO;
 	if (resetLineColor() == ERROR_PROTO)
-	    return ERROR_PROTO;
+		return ERROR_PROTO;
 	return ERROR_OK;
 }
 void Mindsensors_LineLeader::deinit()
 {
 	if (!initialized)
-	    return;
+		return;
 	initialized = false;
 }
 
@@ -68,10 +68,10 @@ Mindsensors_LineLeader::EError Mindsensors_LineLeader::_read(uint8_t regToRead, 
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::_read(uint8_t regToRead, uint8_t *retval)
 {
-    init();
-    uint8_t tx[1];
-    tx[0] = regToRead;
-    if (!sens.getI2C().rw(I2C_ADDR, tx, 1, retval, 1))
+	init();
+	uint8_t tx[1];
+	tx[0] = regToRead;
+	if (!sens.getI2C().rw(I2C_ADDR, tx, 1, retval, 1))
 		return ERROR_PROTO;
 
 	return ERROR_OK;
@@ -80,15 +80,15 @@ Mindsensors_LineLeader::EError  Mindsensors_LineLeader::_read(uint8_t regToRead,
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readSensorRaw(uint8_t *pTab)
 {
-    return _read(SENSOR_RAW,8,pTab);
+	return _read(SENSOR_RAW, 8, pTab);
 
 }
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readResult(uint8_t &v)
 {
-    uint8_t t[1];
-	if((_read(READ_RESULT,t)) == ERROR_PROTO)
-	    return ERROR_PROTO;
+	uint8_t t[1];
+	if ((_read(READ_RESULT, t)) == ERROR_PROTO)
+		return ERROR_PROTO;
 	v = t[0];
 	return ERROR_OK;
 
@@ -96,9 +96,9 @@ Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readResult(uint8_t &v)
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readsetPoint(uint8_t &v)
 {
-    uint8_t t[1];
-	if((_read(SETPOINT,t)) == ERROR_PROTO)
-	    return ERROR_PROTO;
+	uint8_t t[1];
+	if ((_read(SETPOINT, t)) == ERROR_PROTO)
+		return ERROR_PROTO;
 	v = t[0];
 	return ERROR_OK;
 
@@ -106,9 +106,9 @@ Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readsetPoint(uint8_t &v)
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readAverage(uint8_t &v)
 {
-    uint8_t t[1];
-	if((_read(READ_AVERAGE,t)) == ERROR_PROTO)
-	    return ERROR_PROTO;
+	uint8_t t[1];
+	if ((_read(READ_AVERAGE, t)) == ERROR_PROTO)
+		return ERROR_PROTO;
 	v = t[0];
 	return ERROR_OK;
 
@@ -116,19 +116,19 @@ Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readAverage(uint8_t &v)
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readSteering(int8_t &v)
 {
-    uint8_t t[1];
-	if((_read(READ_STEERING,t)) == ERROR_PROTO)
-	    return ERROR_PROTO;
-	v =(0xFF & t[0]);
+	uint8_t t[1];
+	if ((_read(READ_STEERING, t)) == ERROR_PROTO)
+		return ERROR_PROTO;
+	v = (0xFF & t[0]);
 	return ERROR_OK;
 
 }
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKp(uint8_t &v)
 {
-    uint8_t t[1];
-	if((_read(KP_VALUE,t)) == ERROR_PROTO)
-	    return ERROR_PROTO;
+	uint8_t t[1];
+	if ((_read(KP_VALUE, t)) == ERROR_PROTO)
+		return ERROR_PROTO;
 	v = t[0];
 	return ERROR_OK;
 
@@ -136,9 +136,9 @@ Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKp(uint8_t &v)
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKpFactor(uint8_t &v)
 {
-    uint8_t t[1];
-	if((_read(KP_FACTOR,t)) == ERROR_PROTO)
-	    return ERROR_PROTO;
+	uint8_t t[1];
+	if ((_read(KP_FACTOR, t)) == ERROR_PROTO)
+		return ERROR_PROTO;
 	v = t[0];
 	return ERROR_OK;
 
@@ -146,9 +146,9 @@ Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKpFactor(uint8_t &v)
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKi(uint8_t &v)
 {
-    uint8_t t[1];
-	if((_read(KI_VALUE,t)) == ERROR_PROTO)
-	    return ERROR_PROTO;
+	uint8_t t[1];
+	if ((_read(KI_VALUE, t)) == ERROR_PROTO)
+		return ERROR_PROTO;
 	v = t[0];
 	return ERROR_OK;
 
@@ -156,9 +156,9 @@ Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKi(uint8_t &v)
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKiFactor(uint8_t &v)
 {
-    uint8_t t[1];
-	if((_read(KI_FACTOR,t)) == ERROR_PROTO)
-	    return ERROR_PROTO;
+	uint8_t t[1];
+	if ((_read(KI_FACTOR, t)) == ERROR_PROTO)
+		return ERROR_PROTO;
 	v = t[0];
 	return ERROR_OK;
 
@@ -166,9 +166,9 @@ Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKiFactor(uint8_t &v)
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKd(uint8_t &v)
 {
-    uint8_t t[1];
-	if((_read(KD_VALUE,t)) == ERROR_PROTO)
-	    return ERROR_PROTO;
+	uint8_t t[1];
+	if ((_read(KD_VALUE, t)) == ERROR_PROTO)
+		return ERROR_PROTO;
 	v = t[0];
 	return ERROR_OK;
 
@@ -176,9 +176,9 @@ Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKd(uint8_t &v)
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKdFactor(uint8_t &v)
 {
-    uint8_t t[1];
-	if((_read(KD_FACTOR,t)) == ERROR_PROTO)
-	    return ERROR_PROTO;
+	uint8_t t[1];
+	if ((_read(KD_FACTOR, t)) == ERROR_PROTO)
+		return ERROR_PROTO;
 	v = t[0];
 	return ERROR_OK;
 
@@ -186,24 +186,24 @@ Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readKdFactor(uint8_t &v)
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readWhiteThresh(uint8_t *pTab)
 {
-    return _read(WHITE_LIMIT,8,pTab);
+	return _read(WHITE_LIMIT, 8, pTab);
 }
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readBlackThresh(uint8_t *pTab)
 {
-    return _read(BLACK_LIMIT,8,pTab);
+	return _read(BLACK_LIMIT, 8, pTab);
 }
 
 Mindsensors_LineLeader::EError  Mindsensors_LineLeader::readSensorUncalibrated(int8_t *SensorUncVal)
 {
-    uint8_t sensorData[16];
-    if(_read(SENSOR_UNCAL,16,sensorData) == ERROR_PROTO)
-        return ERROR_PROTO;
-    for (uint8_t i = 0; i < 8; ++i)
-    {
-        SensorUncVal[i] = (0xFF & sensorData[i*2]) + ((0xFF & sensorData[(i*2)+1]) << 8);
-    }
-    return ERROR_OK;
+	uint8_t sensorData[16];
+	if (_read(SENSOR_UNCAL, 16, sensorData) == ERROR_PROTO)
+		return ERROR_PROTO;
+	for (uint8_t i = 0; i < 8; ++i)
+	{
+		SensorUncVal[i] = (0xFF & sensorData[i * 2]) + ((0xFF & sensorData[(i * 2) + 1]) << 8);
+	}
+	return ERROR_OK;
 }
 
 
@@ -213,89 +213,89 @@ Mindsensors_LineLeader::EError Mindsensors_LineLeader::sendCmd(uint8_t cmd)
 	uint8_t tx[2];
 	tx[0] = CMD_REG;
 	tx[1] = cmd;
-	if(!sens.getI2C().write(1, tx, 2))
-	    return ERROR_PROTO;
+	if (!sens.getI2C().write(1, tx, 2))
+		return ERROR_PROTO;
 	return ERROR_OK;
 }
 
-Mindsensors_LineLeader::EError Mindsensors_LineLeader::_write(uint8_t regToWrite,uint8_t data)
+Mindsensors_LineLeader::EError Mindsensors_LineLeader::_write(uint8_t regToWrite, uint8_t data)
 {
 	init();
 	uint8_t tx[2];
 	tx[0] = regToWrite;
 	tx[1] = data;
-	if(!sens.getI2C().write(1, tx, 2))
-	    return ERROR_PROTO;
+	if (!sens.getI2C().write(1, tx, 2))
+		return ERROR_PROTO;
 	return ERROR_OK;
 }
 
 Mindsensors_LineLeader::EError Mindsensors_LineLeader::wakeUp()
 {
-    return sendCmd('P');
+	return sendCmd('P');
 }
 
 Mindsensors_LineLeader::EError Mindsensors_LineLeader::sleep()
 {
-    return sendCmd('D');
+	return sendCmd('D');
 }
 
 Mindsensors_LineLeader::EError Mindsensors_LineLeader::invertLineColor()
 {
-    return sendCmd('I');
+	return sendCmd('I');
 }
 
 Mindsensors_LineLeader::EError Mindsensors_LineLeader::resetLineColor()
 {
-    return sendCmd('R');
+	return sendCmd('R');
 }
 
 Mindsensors_LineLeader::EError Mindsensors_LineLeader::takeSnapshot()
 {
-    return sendCmd('S');
+	return sendCmd('S');
 }
 
 Mindsensors_LineLeader::EError Mindsensors_LineLeader::calWhite()
 {
-    return sendCmd('W');
+	return sendCmd('W');
 }
 
 Mindsensors_LineLeader::EError Mindsensors_LineLeader::calBlack()
 {
-    return sendCmd('B');
+	return sendCmd('B');
 }
 
 
-Mindsensors_LineLeader::EError Mindsensors_LineLeader::setKp(uint8_t k,uint8_t factor)
+Mindsensors_LineLeader::EError Mindsensors_LineLeader::setKp(uint8_t k, uint8_t factor)
 {
-    if(_write(KP_VALUE, k) == ERROR_PROTO)
-        return ERROR_PROTO;
-    if ( factor == 0 ) factor = 1;
-    if(_write(KP_FACTOR, factor) == ERROR_PROTO)
-        return ERROR_PROTO;
-    return ERROR_OK;
+	if (_write(KP_VALUE, k) == ERROR_PROTO)
+		return ERROR_PROTO;
+	if (factor == 0) factor = 1;
+	if (_write(KP_FACTOR, factor) == ERROR_PROTO)
+		return ERROR_PROTO;
+	return ERROR_OK;
 }
 
-Mindsensors_LineLeader::EError Mindsensors_LineLeader::setKi(uint8_t k,uint8_t factor)
+Mindsensors_LineLeader::EError Mindsensors_LineLeader::setKi(uint8_t k, uint8_t factor)
 {
-    if(_write(KI_VALUE, k) == ERROR_PROTO)
-        return ERROR_PROTO;
-    if ( factor == 0 ) factor = 1;
-    if(_write(KI_FACTOR, factor) == ERROR_PROTO)
-        return ERROR_PROTO;
-    return ERROR_OK;
+	if (_write(KI_VALUE, k) == ERROR_PROTO)
+		return ERROR_PROTO;
+	if (factor == 0) factor = 1;
+	if (_write(KI_FACTOR, factor) == ERROR_PROTO)
+		return ERROR_PROTO;
+	return ERROR_OK;
 }
 
-Mindsensors_LineLeader::EError Mindsensors_LineLeader::setKd(uint8_t k,uint8_t factor)
+Mindsensors_LineLeader::EError Mindsensors_LineLeader::setKd(uint8_t k, uint8_t factor)
 {
-    if(_write(KD_VALUE, k) == ERROR_PROTO)
-        return ERROR_PROTO;
-    if ( factor == 0 ) factor = 1;
-    if(_write(KD_FACTOR, factor) == ERROR_PROTO)
-        return ERROR_PROTO;
-    return ERROR_OK;
+	if (_write(KD_VALUE, k) == ERROR_PROTO)
+		return ERROR_PROTO;
+	if (factor == 0) factor = 1;
+	if (_write(KD_FACTOR, factor) == ERROR_PROTO)
+		return ERROR_PROTO;
+	return ERROR_OK;
 }
 
 Mindsensors_LineLeader::EError Mindsensors_LineLeader::setPoint(uint8_t data)
 {
-    return _write(SETPOINT,data);
+	return _write(SETPOINT, data);
 }
