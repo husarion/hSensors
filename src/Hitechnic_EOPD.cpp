@@ -18,6 +18,7 @@ void Hitechnic_EOPD::init()
 	if (initialized)
 		return;
 	sens.getPinIntAdc().enableADC();
+	sens.getPin1().setOut();
 	initialized = true;
 }
 void Hitechnic_EOPD::deinit()
@@ -37,3 +38,13 @@ Hitechnic_EOPD::EError Hitechnic_EOPD::read(data *pDataMsg)
 
 }
 
+void Hitechnic_EOPD::setModeLong()
+{
+	init();
+	sens.getPin1().write(1);
+}
+void Hitechnic_EOPD::setModeShort()
+{
+	init();
+	sens.getPin1().write(0);
+}

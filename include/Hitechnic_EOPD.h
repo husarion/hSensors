@@ -35,6 +35,9 @@ public:
 	 * @return error code
 	 */
 	EError read(data *pDataMsg);
+
+	void setModeLong();
+	void setModeShort();
 private:
 
 	ILegoSensor_i2c &sens;
