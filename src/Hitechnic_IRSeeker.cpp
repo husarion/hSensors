@@ -29,6 +29,7 @@ Hitechnic_IRSeeker::EError Hitechnic_IRSeeker::init()
 		return ERROR_OK;
 	sens.selectI2C();
 	sens.getI2C().setDataRate(10000);
+	initialized = true;
 
 	return config();
 }

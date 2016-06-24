@@ -39,12 +39,11 @@ Mindsensors_LineLeader::EError Mindsensors_LineLeader::init()
 		return ERROR_OK;
 	sens.selectI2C();
 	sens.getI2C().setDataRate(10000);
-	if (!initialized)
-		return ERROR_PROTO;
 	if (wakeUp() == ERROR_PROTO)
 		return ERROR_PROTO;
 	if (resetLineColor() == ERROR_PROTO)
 		return ERROR_PROTO;
+	initialized = true;
 	return ERROR_OK;
 }
 void Mindsensors_LineLeader::deinit()

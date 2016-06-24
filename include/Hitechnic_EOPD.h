@@ -36,7 +36,15 @@ public:
 	 */
 	EError read(data *pDataMsg);
 
+	/**
+	 * @brief Configure the sensor to long range mode
+	 *
+	 */
 	void setModeLong();
+	/**
+	 * @brief Configure the sensor to short range mode
+	 *
+	 */
 	void setModeShort();
 private:
 

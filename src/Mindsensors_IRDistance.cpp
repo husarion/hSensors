@@ -23,8 +23,8 @@ Mindsensors_IRDistance::EError Mindsensors_IRDistance::init()
 		return ERROR_OK;
 	sens.selectI2C();
 	sens.getI2C().setDataRate(10000);
-	if (!initialized)
-		return ERROR_PROTO;
+	initialized = true;
+
 	return ERROR_OK;
 }
 void Mindsensors_IRDistance::deinit()

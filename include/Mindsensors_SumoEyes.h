@@ -27,8 +27,24 @@ public:
 	void init(); //!< Initialize sensor.
 	void deinit(); //!< Deinitialize sensor.
 
+	/**
+	 * @brief Read zone from the sensor
+	 *
+	 * @param pDataMsg pointer to the sensor's data struct
+	 * @return zone NONE, FRONT, LEFT or RIGHT
+	 */
 	Zone readZone();
+
+	/**
+	 * @brief Configure the sensor to long range mode
+	 *
+	 */
 	void setLongRange();
+
+	/**
+	 * @brief Configure the sensor to short range mode
+	 *
+	 */
 	void setShortRange();
 
 private:

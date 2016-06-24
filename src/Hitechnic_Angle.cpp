@@ -30,8 +30,8 @@ Hitechnic_Angle::EError Hitechnic_Angle::init()
 		return ERROR_OK;
 	sens.selectI2C();
 	sens.getI2C().setDataRate(10000);
-	if (!initialized)
-		return ERROR_PROTO;
+	initialized = true;
+
 	return sendCmd(CMD_MEASURE);
 }
 void Hitechnic_Angle::deinit()

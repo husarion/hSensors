@@ -31,6 +31,7 @@ void Mindsensors_Pressure::init()
 	if (initialized)
 		return;
 	sens.getPinIntAdc().enableADC();
+	initialized = true;
 
 }
 void Mindsensors_Pressure::deinit()
