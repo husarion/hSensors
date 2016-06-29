@@ -8,9 +8,8 @@ using namespace hSensors;
 
 void hMain(void)
 {
-	sys.setLogDev(&Serial);
-
-	Mindsensors_SumoEyes sensor(hSens1);
+    hLegoSensor_i2c s(hSens1);
+    Mindsensors_SumoEyes sensor(s);
 	sensor.setLongRange();
 
 	for (;;)
@@ -19,13 +18,13 @@ void hMain(void)
 		zone = sensor.readZone();
 		LED1.toggle();
 		if(zone == 0)
-			printf("obstacle not detected");
+			printf("obstacle not detected \r\n");
 		if(zone == 1)
-			printf("obstacle in front of robot");
+			printf("obstacle in front of robot \r\n");
 		if(zone == 2)
-			printf("obstacle on the left");
+			printf("obstacle on the left \r\n");
 		if(zone == 3)
-			printf("obstacle on the right");
-		sys.delay_ms(10);
+			printf("obstacle on the right \r\n");
+		sys.delay_ms(100);
 	}
 }

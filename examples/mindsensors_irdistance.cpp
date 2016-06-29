@@ -8,9 +8,8 @@ using namespace hSensors;
 
 void hMain(void)
 {
-	sys.setLogDev(&Serial);
-
-	Mindsensors_IRDistance sensor(hSens1);
+    hLegoSensor_i2c s(hSens1);
+    Mindsensors_IRDistance sensor(s);
 
 	for (;;)
 	{
@@ -20,6 +19,6 @@ void hMain(void)
 		sensor.readVoltage(voltage);
 		LED1.toggle();
 		printf("Real value: %d, voltage value: %d \r\n",realvalue, voltage);
-		sys.delay_ms(10);
+		sys.delay_ms(100);
 	}
 }

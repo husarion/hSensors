@@ -28,9 +28,9 @@ Hitechnic_Angle::EError Hitechnic_Angle::init()
 {
 	if (initialized)
 		return ERROR_OK;
+	initialized = true;
 	sens.selectI2C();
 	sens.getI2C().setDataRate(10000);
-	initialized = true;
 
 	return sendCmd(CMD_MEASURE);
 }
@@ -69,11 +69,15 @@ Hitechnic_Angle::EError Hitechnic_Angle::read(data *pTab)
 
 Hitechnic_Angle::EError Hitechnic_Angle::resetAccmulatedAngle()
 {
+	init();
+	sys.delay_ms(70);
 	return sendCmd(CMD_RST_ACC_ANG);
 }
 
 Hitechnic_Angle::EError Hitechnic_Angle::resetAngle()
 {
+	init();
+	sys.delay_ms(70);
 	return sendCmd(CMD_RST_ANG);
 }
 

@@ -30,22 +30,6 @@ public:
 	void deinit(); //!< Deinitialize sensor.
 
 	/**
-	 * @brief Read the current configuration register
-	 *
-	 * @param conf the contents of the register
-	 * @return error code
-	 */
-	EError readConfig(uint8_t &conf);
-
-	/**
-	 * @brief Set the configuration register
-	 *
-	 * @param conf the contents of the register
-	 * @return error code
-	 */
-	EError setConfig(uint8_t conf);
-
-	/**
 	 * @brief Read the temperature.
 	 *
 	 * @param v the temperature value,
@@ -94,6 +78,22 @@ private:
 	 * @return error code
 	 */
 	Accuracy convertAccuracy(uint8_t conf);
+
+	/**
+	 * @brief Read the current configuration register
+	 *
+	 * @param conf the contents of the register
+	 * @return error code
+	 */
+	EError readConfig(uint8_t &conf);
+
+	/**
+	 * @brief Set the configuration register
+	 *
+	 * @param conf the contents of the register
+	 * @return error code
+	 */
+	EError setConfig(uint8_t conf);
 };
 
 }

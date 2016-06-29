@@ -139,6 +139,7 @@ Lego_Temp::EError Lego_Temp::readTemp(float &v)
 
 Lego_Temp::EError Lego_Temp::readAccuracy(Accuracy &v)
 {
+	init();
 	uint8_t conf;
 	if(!(readConfig(conf) == ERROR_OK))
 		return ERROR_PROTO;
@@ -148,6 +149,7 @@ Lego_Temp::EError Lego_Temp::readAccuracy(Accuracy &v)
 
 Lego_Temp::EError Lego_Temp::setAccuracy(Accuracy v)
 {
+	init();
 	uint8_t conf;
 	if(!(readConfig(conf)) == ERROR_OK)
 		return ERROR_PROTO;
@@ -172,6 +174,7 @@ Lego_Temp::EError Lego_Temp::setAccuracy(Accuracy v)
 
 Lego_Temp::EError Lego_Temp::setSingleShot()
 {
+	init();
 	uint8_t conf;
 	if(!(readConfig(conf) == ERROR_OK))
 		return ERROR_PROTO;
@@ -181,6 +184,7 @@ Lego_Temp::EError Lego_Temp::setSingleShot()
 
 Lego_Temp::EError Lego_Temp::setContinuous()
 {
+	init();
 	uint8_t conf;
 	if(!(readConfig(conf) == ERROR_OK))
 		return ERROR_PROTO;
