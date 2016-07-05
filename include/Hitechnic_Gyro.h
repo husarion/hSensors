@@ -27,11 +27,13 @@
 
 #include <hFramework.h>
 
-namespace hSensors {
+namespace hSensors
+{
 /**
  * @brief Provides interface for Hitechnic Gyro sensor.
  */
-class Hitechnic_Gyro {
+class Hitechnic_Gyro
+{
 public:
 	/**
 	 * @brief Create sensor object.

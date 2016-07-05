@@ -27,11 +27,13 @@
 
 #include <hFramework.h>
 
-namespace hSensors {
+namespace hSensors
+{
 /**
  * @brief Provides interface for Lego Sound sensor.
  */
-class Lego_Sound {
+class Lego_Sound
+{
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
 

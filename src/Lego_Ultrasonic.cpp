@@ -47,7 +47,7 @@ int Lego_Ultrasonic::readDist()
 	tx[0] = LEGOUS_REG_DATA;
 	if (!sens.getI2C().read(1, tx, 1, rx, 1))
 		return -1;
-		
+
 	return rx[0];
 }
 bool Lego_Ultrasonic::readDistances(uint8_t distances[8])

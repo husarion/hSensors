@@ -27,11 +27,13 @@
 
 #include <hFramework.h>
 
-namespace hSensors {
+namespace hSensors
+{
 /**
  * @brief Provides interface for Lego Touch sensor.
  */
-class Lego_Touch {
+class Lego_Touch
+{
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
 

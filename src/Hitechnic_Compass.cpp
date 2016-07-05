@@ -69,6 +69,6 @@ Hitechnic_Compass::EError Hitechnic_Compass::readHeading(uint16_t& heading)
 	uint8_t tx[1];
 	tx[0] = REG_HEADING;
 	sens.getI2C().read(SENSOR_ADDRESS, tx, 1, (uint8_t*)&heading, 2);
-	
+
 	return ERROR_OK;
 }
