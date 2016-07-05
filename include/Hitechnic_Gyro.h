@@ -27,17 +27,19 @@
 
 #include <hFramework.h>
 
-namespace hSensors {
+namespace hSensors
+{
 /**
  * @brief Provides interface for Hitechnic Gyro sensor.
  */
-class Hitechnic_Gyro {
+class Hitechnic_Gyro
+{
 public:
 	/**
 	 * @brief Create sensor object.
 	 * @param sensor hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
-	Hitechnic_Gyro(hSensor& sensor);
+	Hitechnic_Gyro(ILegoSensor& sensor);
 	~Hitechnic_Gyro(); //!< Destory sensor object.
 
 	void init(); //!< Initialize sensor.
@@ -46,7 +48,7 @@ public:
 	uint16_t read(); //!< Read angle from the sensor.
 
 private:
-	hSensor &sensor;
+	ILegoSensor &sensor;
 	bool initialized;
 };
 

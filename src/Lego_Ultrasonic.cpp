@@ -15,7 +15,7 @@
 
 using namespace hSensors;
 
-Lego_Ultrasonic::Lego_Ultrasonic(ISensor_i2c& sensor) : sens(sensor), initialized(false)
+Lego_Ultrasonic::Lego_Ultrasonic(ILegoSensor_i2c& sensor) : sens(sensor), initialized(false)
 {
 }
 Lego_Ultrasonic::~Lego_Ultrasonic()
@@ -47,7 +47,7 @@ int Lego_Ultrasonic::readDist()
 	tx[0] = LEGOUS_REG_DATA;
 	if (!sens.getI2C().read(1, tx, 1, rx, 1))
 		return -1;
-		
+
 	return rx[0];
 }
 bool Lego_Ultrasonic::readDistances(uint8_t distances[8])

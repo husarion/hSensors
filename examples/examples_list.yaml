@@ -1,0 +1,9 @@
+items:
+- name: hitechnic_accel
+- name: hitechnic_colorv2
+- name: hitechnic_compass
+- name: hitechnic_gyro
+- name: lego_light
+- name: lego_sound
+- name: lego_touch
+- name: lego_ultrasonic

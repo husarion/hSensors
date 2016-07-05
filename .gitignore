@@ -11,3 +11,6 @@ cmake_install.cmake
 libs/
 Makefile
 *.a
+*.un~
+*.sw?
+/docs/test/build/

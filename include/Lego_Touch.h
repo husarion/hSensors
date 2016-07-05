@@ -27,11 +27,13 @@
 
 #include <hFramework.h>
 
-namespace hSensors {
+namespace hSensors
+{
 /**
  * @brief Provides interface for Lego Touch sensor.
  */
-class Lego_Touch {
+class Lego_Touch
+{
 public:
 	enum EError { ERROR_OK, ERROR_PROTO };
 
@@ -39,7 +41,7 @@ public:
 	 * @brief Create sensor object.
 	 * @param sensor - hSensor port (eg. hSens1, hSens2, hSens3)
 	 */
-	Lego_Touch(ISensor& sensor);
+	Lego_Touch(ILegoSensor& sensor);
 	~Lego_Touch(); //!< Destory sensor object.
 
 	void init(); //!< Initialize sensor.
@@ -64,7 +66,7 @@ public:
 	bool isReleased();
 
 private:
-	ISensor &sens;
+	ILegoSensor &sens;
 	bool initialized;
 };
 
