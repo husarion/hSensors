@@ -6,7 +6,7 @@ import subprocess
 import shutil
 import copy
 
-def_versions = "stm32:robocore@1.0.0,core2@0.1.0;linux:rpi@1.0.0"
+def_versions = "stm32:robocore@1.0.0,core2@0.1.0,core2@0.2.0,core2mini@0.1.0;linux:rpi@1.0.0"
 
 args = None
 params = None
@@ -80,9 +80,9 @@ def process_version(args, port, board_type, version):
 
     if args.pyconnector and os.path.exists("py-connector/"):
         if args.debug:
-            build(type, version, True, "py-connector/")
+            build(port, board_type, version, True, "py-connector/")
         if args.release:
-            build(type, version, False, "py-connector/")
+            build(port, board_type, version, False, "py-connector/")
 
 
 def build(port, board_type, version, debug, path):

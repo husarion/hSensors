@@ -1,16 +1,24 @@
+@PORTS: stm32
+@NAME: lego_sound
 #include <hFramework.h>
-#include <stdio.h>
 
-#include "Lego_Sound.h"
+#include <Lego_Sound.h>
 
-using namespace hFramework;
 using namespace hSensors;
 
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
 	
-	Lego_Sound sensor(hSens1);
+{% if board(robocore) %}
+	Lego_Sound sensor(hSens5);
+{% elif board(core2) %}
+	hLegoSensor_simple ls(hSens5);
+	Lego_Sound sensor(ls);
+{% elif board(core2mini) %}
+	hLegoSensor_serial ls(hSens3);
+	Lego_Sound sensor(ls);
+{% endif %}
 	
 	for (;;)
 	{

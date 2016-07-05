@@ -1,16 +1,21 @@
+@PORTS: stm32
+@NAME: hitechnic_accel
 #include <hFramework.h>
-#include <stdio.h>
 
-#include "Hitechnic_Accel.h"
+#include <Hitechnic_Accel.h>
 
-using namespace hFramework;
 using namespace hSensors;
 
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
 	
+{% if board(robocore) %}
 	Hitechnic_Accel sensor(hSens1);
+{% else %}
+	hLegoSensor_i2c ls(hSens1);
+	Hitechnic_Accel sensor(ls);
+{% endif %}
 	
 	for (;;)
 	{

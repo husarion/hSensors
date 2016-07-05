@@ -1,16 +1,21 @@
+@PORTS: stm32
+@NAME: hitechnic_compass
 #include <hFramework.h>
-#include <stdio.h>
 
-#include "Hitechnic_Compass.h"
+#include <Hitechnic_Compass.h>
 
-using namespace hFramework;
 using namespace hSensors;
 
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
 	
+{% if board(robocore) %}
 	Hitechnic_Compass sensor(hSens1);
+{% else %}
+	hLegoSensor_i2c ls(hSens1);
+	Hitechnic_Compass sensor(ls);
+{% endif %}
 	
 	for (;;)
 	{

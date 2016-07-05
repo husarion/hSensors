@@ -27,6 +27,9 @@
 
 #include <hFramework.h>
 
+/**
+ * @brief hSensors
+ */
 namespace hSensors {
 /**
  * @brief Provides interface for Hitechnic Accelerometer sensor.
