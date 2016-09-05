@@ -6,7 +6,7 @@ import subprocess
 import shutil
 import copy
 
-def_versions = "stm32:robocore@1.0.0,core2@0.1.0,core2@0.2.0,core2mini@0.1.0;linux:rpi@1.0.0"
+def_versions = "stm32:robocore@1.0.0,core2@0.1.0,core2@0.2.0,core2@1.0.0,core2mini@0.1.0;linux:rpi@1.0.0"
 
 args = None
 params = None
@@ -23,6 +23,10 @@ def run():
     path = os.getenv("TOOLCHAIN_PATH", "../toolchain")
     params["TOOLCHAIN_PATH"] = os.path.realpath(path)
 
+    path = os.getenv("CROSSLIB_PATH", "../crosslib")
+    if path is not None:
+        params["CROSSLIB_PATH"] = os.path.realpath(path)
+
     path = os.getenv("HFRAMEWORK_PATH", "../hFramework")
     if path is not None:
         params["HFRAMEWORK_PATH"] = os.path.realpath(path)
@@ -34,6 +38,14 @@ def run():
     path = os.getenv("HSENSORS_PATH", "../hSensors")
     if path is not None:
         params["HSENSORS_PATH"] = os.path.realpath(path)
+
+    path = os.getenv("CROSSLIB_PATH", "../crosslib")
+    if path is not None:
+        params["CROSSLIB_PATH"] = os.path.realpath(path)
+
+    path = os.getenv("NATIVELIB_PATH", "../nativelib")
+    if path is not None:
+        params["NATIVELIB_PATH"] = os.path.realpath(path)
 
     args = argparse.ArgumentParser()
     args.add_argument("--debug", action="store_true")
