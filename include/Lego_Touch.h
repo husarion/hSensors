@@ -65,6 +65,12 @@ public:
 	 */
 	bool isReleased();
 
+	/**
+ 	* @brief Wait for change of touch sensor state (interrupt based)
+ 	* @return true, if state changed before timeout
+ 	*/	
+	bool waitUntilChange(uint32_t timeout = INFINITE);
+
 private:
 	ILegoSensor &sens;
 	bool initialized;

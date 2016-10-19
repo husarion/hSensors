@@ -19,6 +19,7 @@ void Lego_Touch::init()
 	if (initialized)
 		return;
 	sens.getPinIntAdc().disableADC();
+	sens.getPinIntAdc().interruptOn_EdgeChange();
 	initialized = true;
 }
 void Lego_Touch::deinit()
@@ -42,4 +43,10 @@ bool Lego_Touch::isPressed()
 bool Lego_Touch::isReleased()
 {
 	return readState() != 0;
+}
+
+bool Lego_Touch::waitUntilChange(uint32_t timeout = INFINITE)
+{
+	init();
+	return sens.getPinIntAdc().interruptWait(timeout);
 }
