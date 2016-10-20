@@ -45,7 +45,7 @@ bool Lego_Touch::isReleased()
 	return readState() != 0;
 }
 
-bool Lego_Touch::waitUntilChange(uint32_t timeout = INFINITE)
+bool Lego_Touch::waitUntilChange(uint32_t timeout)
 {
 	init();
 	return sens.getPinIntAdc().interruptWait(timeout);
