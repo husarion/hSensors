@@ -1,34 +1,25 @@
 cmake_minimum_required(VERSION 2.6)
-get_filename_component(CURRENT_DIR ${CMAKE_CURRENT_LIST_FILE} PATH) # for cmake before 2.8.3
+project(hSensors NONE)
 
-project(robocore-sensors C CXX ASM)
+include(${HFRAMEWORK_PATH}/hFramework.cmake)
 
-if(NOT HFRAMEWORK_PATH)
-	set(HFRAMEWORK_PATH ${CURRENT_DIR}/hFramework/)
-endif()
+include_directories("include")
 
-set(debug_flags "-DSENSORS_DEBUG")
-
-include(${HFRAMEWORK_PATH}/robocore_common.cmake)
-include(${CURRENT_DIR}/hSensors.cmake)
-
-if(NOT RELEASE)
-	set(TARGET_NAME hSensorsd)
-else()
-	set(TARGET_NAME hSensors)
-endif()
-
-add_library(${TARGET_NAME} bindir ${HSENSORS_SOURCES})
-
-set(BINDIR "${CURRENT_DIR}/${LIB_DIR_NAME}")
-add_custom_command(OUTPUT bindir COMMAND mkdir -p ${BINDIR})
-set_target_properties(${TARGET_NAME}
-	PROPERTIES
-	ARCHIVE_OUTPUT_DIRECTORY ${BINDIR})
-
-add_custom_target(format-all
-	COMMAND astyle -r -n --options=astylerc_cpp 'src/*.cpp' 'examples/*.cpp' 'include/*.h')
-
-add_custom_target(docs
-	COMMAND doxygen doxygen
-	WORKING_DIRECTORY ${CURRENT_DIR}/docs/test/)
+add_library(hSensors
+  ./src/Hitechnic_Accel.cpp
+  ./src/Hitechnic_ColorV2.cpp
+  ./src/Hitechnic_Compass.cpp
+  ./src/Hitechnic_Gyro.cpp
+  ./src/Lego_Light.cpp
+  ./src/Lego_Sound.cpp
+  ./src/Lego_Ultrasonic.cpp
+  ./src/Hitechnic_Angle.cpp
+  ./src/Hitechnic_EOPD.cpp
+  ./src/Hitechnic_IRSeeker.cpp
+  ./src/Lego_Temp.cpp
+  ./src/Lego_Touch.cpp
+  ./src/Mindsensors_IRDistance.cpp
+  ./src/Mindsensors_LineLeader.cpp
+  ./src/Mindsensors_NumericPad.cpp
+  ./src/Mindsensors_Pressure.cpp
+  ./src/Mindsensors_SumoEyes.cpp)
