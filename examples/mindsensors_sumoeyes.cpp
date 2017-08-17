@@ -1,3 +1,6 @@
+@PORTS: stm32
+@BOARDS: core2,core2mini
+@NAME: mindsensors sumoeyes
 #include <hFramework.h>
 #include <stdio.h>
 
@@ -16,7 +19,7 @@ void hMain(void)
 	{
 		Mindsensors_SumoEyes::Zone zone;
 		zone = sensor.readZone();
-		LED1.toggle();
+		hLED1.toggle();
 		if(zone == 0)
 			printf("obstacle not detected \r\n");
 		if(zone == 1)
@@ -25,6 +28,6 @@ void hMain(void)
 			printf("obstacle on the left \r\n");
 		if(zone == 3)
 			printf("obstacle on the right \r\n");
-		sys.delay_ms(100);
+		sys.delay(100);
 	}
 }

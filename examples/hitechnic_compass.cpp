@@ -1,7 +1,7 @@
 @PORTS: stm32
+@BOARDS: core2, core2mini
 @NAME: hitechnic_compass
 #include <hFramework.h>
-
 #include <Hitechnic_Compass.h>
 
 using namespace hSensors;
@@ -9,20 +9,15 @@ using namespace hSensors;
 void hMain(void)
 {
 	sys.setLogDev(&Serial);
-	
-{% if board(robocore) %}
-	Hitechnic_Compass sensor(hSens1);
-{% else %}
-	hLegoSensor_i2c ls(hSens1);
+	hLegoSensor_i2c ls(hSens1); // initialization of Hitechnic Compass sensor
 	Hitechnic_Compass sensor(ls);
-{% endif %}
-	
-	for (;;)
+
+	for (;;) 
 	{
 		uint16_t heading;
-		sensor.readHeading(heading);
-		LED1.toggle();
-		printf("head %d\r\n", heading);
-		sys.delay_ms(10);
+		sensor.readHeading(heading); // reading raw data from sensor
+		hLED1.toggle();
+		printf("head %d\r\n", heading); // printing on Serial console value of heading variable
+		sys.delay(10);
 	}
 }

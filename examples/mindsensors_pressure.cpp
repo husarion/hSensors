@@ -1,3 +1,6 @@
+@PORTS: stm32
+@BOARDS: core2,core2mini
+@NAME: mindsensors pressure
 #include <hFramework.h>
 #include <stdio.h>
 
@@ -15,8 +18,8 @@ void hMain(void)
 	{
 		float pressure;
 		sensor.read(pressure);
-		LED1.toggle();
+		hLED1.toggle();
 		printf("Pressure: %f \r\n",pressure);
-		sys.delay_ms(100);
+		sys.delay(100);
 	}
 }

@@ -1,3 +1,6 @@
+@PORTS: stm32
+@BOARDS: core2,core2mini
+@NAME: mindsensors irdistance
 #include <hFramework.h>
 #include <stdio.h>
 
@@ -17,8 +20,8 @@ void hMain(void)
 		int16_t voltage;
 		sensor.readReal(realvalue);
 		sensor.readVoltage(voltage);
-		LED1.toggle();
+		hLED1.toggle();
 		printf("Real value: %d, voltage value: %d \r\n",realvalue, voltage);
-		sys.delay_ms(100);
+		sys.delay(100);
 	}
 }
