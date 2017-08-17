@@ -1,9 +1,19 @@
 items:
 - name: hitechnic_accel
+- name: hitechnic_angle
 - name: hitechnic_colorv2
 - name: hitechnic_compass
+- name: hitechnic_eopd
 - name: hitechnic_gyro
+- name: hitechnic_irseeker
 - name: lego_light
 - name: lego_sound
+- name: lego_temp
 - name: lego_touch
 - name: lego_ultrasonic
+- name: mindsensors_irdistance
+- name: mindsensors_lineleader
+- name: mindsensors_numbericpad
+- name: mindsensors_pressure
+- name: mindsensors_sumoeyes
+- name: mindsensors_touch
