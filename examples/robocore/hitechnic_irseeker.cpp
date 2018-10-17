@@ -9,8 +9,7 @@ using namespace hSensors;
 void hMain(void)
 {
 
-    hLegoSensor_i2c ls(hSens1);
-    Hitechnic_IRSeeker sensor(ls);
+	Hitechnic_IRSeeker sensor(hSens1);
 
 	for (;;)
 	{
